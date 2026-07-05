@@ -38,16 +38,16 @@ public class Missione {
         return reputazione;
     }
 
-    public void assegna(Eroe eroe){
+    public void assegna(Eroe eroe) {
         if (statoMissione == StatoMissione.DISPONIBILE) {
             this.eroeAssegnato = eroe;
             statoMissione = StatoMissione.IN_CORSO;
         } else throw new IllegalStateException("Fra la missione non è disponibile!");
     }
 
-    public boolean risolvi(){
-        if (statoMissione == StatoMissione.DISPONIBILE || statoMissione == StatoMissione.CONCLUSA){
-            throw new IllegalStateException ("Fra la missione non è in corso!");
+    public EsitoMissione risolvi() {
+        if (statoMissione == StatoMissione.DISPONIBILE || statoMissione == StatoMissione.CONCLUSA) {
+            throw new IllegalStateException("Fra la missione non è in corso!");
         }
         System.out.println("--- Risoluzione Missione: " + this.descrizione + " ---");
         System.out.println("Difficoltà: " + this.difficolta + " | Eroe: " + eroeAssegnato.getNome() + " (Livello " + eroeAssegnato.getLivello() + ")");
@@ -67,8 +67,13 @@ public class Missione {
 
         Random random = new Random();
         int tiroDado = random.nextInt(100) + 1;
-
         statoMissione = StatoMissione.CONCLUSA;
-        return tiroDado <= probabilitaDiSuccesso;
+
+        if (tiroDado <= probabilitaDiSuccesso) {
+            return new EsitoMissione (true, this.ricompensa, this.reputazione);
+        } else {
+            return new EsitoMissione (false, 0, -this.reputazione);
+        }
+
     }
 }

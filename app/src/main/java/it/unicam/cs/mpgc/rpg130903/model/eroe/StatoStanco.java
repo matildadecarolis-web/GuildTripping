@@ -16,7 +16,12 @@ public class StatoStanco implements StatoEroe{
     }
 
     @Override
-    public void inmissione(Eroe eroe) {
+    public void inMissione(Eroe eroe) {
         System.out.println(eroe.getNome() + " è troppo stanco per partire");
+    }
+
+    @Override
+    public void ritornaDallaMissione(Eroe eroe, boolean esitoPositivo) {
+        System.out.println(eroe.getNome() + " non era in missione");
     }
 }

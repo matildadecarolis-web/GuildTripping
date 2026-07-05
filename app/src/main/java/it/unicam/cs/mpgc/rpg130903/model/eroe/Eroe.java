@@ -41,7 +41,7 @@ public class Eroe {
     }
 
     public void inmissione(){
-        statocorrente.inmissione((this));
+        statocorrente.inMissione((this));
     }
 
     public void aggiungiMissioneCompletata() {
@@ -62,5 +62,9 @@ public class Eroe {
     public void calcolaStipendio(){
         int costantestipendio = 10;
         this.stipendio = this.livello * costantestipendio;
+    }
+
+    public void concludiMissione (boolean esitoPositivo){
+        statocorrente.ritornaDallaMissione(this, esitoPositivo);
     }
 }

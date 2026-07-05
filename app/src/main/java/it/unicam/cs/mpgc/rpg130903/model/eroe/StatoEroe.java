@@ -6,5 +6,7 @@ public interface StatoEroe {
 
     void riposo(Eroe eroe);
 
-    void inmissione(Eroe eroe);
+    void inMissione(Eroe eroe);
+
+    void ritornaDallaMissione (Eroe eroe, boolean esitoPositivo);
 }
