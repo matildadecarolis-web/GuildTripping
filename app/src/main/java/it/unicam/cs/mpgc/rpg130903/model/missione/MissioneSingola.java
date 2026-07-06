@@ -4,6 +4,8 @@ import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 
 import java.util.Random;
 
+import static it.unicam.cs.mpgc.rpg130903.model.missione.Quest.*;
+
 public class MissioneSingola implements Quest{
     private final String descrizione;
     private final int difficolta;
@@ -12,15 +14,18 @@ public class MissioneSingola implements Quest{
     private Assegnabile assegnabile;
     private StatoMissione statoMissione;
 
+    private final CalcolatoreProbabilitaStrategy calcolatoreProbabilita;
+
     private static final int COSTANTE_RICOMPENSA = 20;
     private static final int COSTANTE_REPUTAZIONE = 10;
 
 
-    public MissioneSingola(String descrizione, int difficolta) {
+    public MissioneSingola(String descrizione, int difficolta, CalcolatoreProbabilitaStrategy calcolatore) {
         this.descrizione = descrizione;
         this.difficolta = difficolta;
         this.ricompensa = difficolta * COSTANTE_RICOMPENSA;
         this.reputazione = difficolta * COSTANTE_REPUTAZIONE;
+        this.calcolatoreProbabilita = calcolatore;
         statoMissione = StatoMissione.DISPONIBILE;
         this.assegnabile = null;
     }
@@ -46,9 +51,9 @@ public class MissioneSingola implements Quest{
 
     @Override
     public void assegna(Assegnabile assegnabile) {
-        if (statoMissione == StatoMissione.DISPONIBILE) {
+        if (statoMissione == Quest.StatoMissione.DISPONIBILE) {
             this.assegnabile = assegnabile;
-            statoMissione = StatoMissione.IN_CORSO;
+            statoMissione = Quest.StatoMissione.IN_CORSO;
         } else throw new IllegalStateException("Fra la missione non è disponibile!");
     }
 
@@ -59,28 +64,14 @@ public class MissioneSingola implements Quest{
 
     @Override
     public EsitoMissione risolvi() {
-        if (statoMissione == StatoMissione.DISPONIBILE || statoMissione == StatoMissione.CONCLUSA) {
-            throw new IllegalStateException("Fra la missione non è in corso!");
+        if (statoMissione == Quest.StatoMissione.DISPONIBILE || statoMissione == Quest.StatoMissione.CONCLUSA) {
+            throw new IllegalStateException("La missione non può essere risolta nello stato attuale!");
         }
-        System.out.println("--- Risoluzione Missione: " + this.descrizione + " ---");
-        System.out.println("Difficoltà: " + this.difficolta + " | Eroe: " + assegnabile.getNomeSchieramento() + " (Livello " + assegnabile.getLivelloOperativo() + ")");
-
-        int delta = assegnabile.getLivelloOperativo() - this.difficolta;
-        int probabilitaDiSuccesso = 70;
-        probabilitaDiSuccesso += (delta * 10);
-
-        if (probabilitaDiSuccesso > 95) {
-            probabilitaDiSuccesso = 95;
-        }
-        if (probabilitaDiSuccesso < 5) {
-            probabilitaDiSuccesso = 5;
-        }
-
-        System.out.println("Probabilità di successo stimata: " + probabilitaDiSuccesso + "%");
+        int probabilitaDiSuccesso = this.calcolatoreProbabilita.calcolaProbabilita(assegnabile.getLivelloOperativo(), this.difficolta);
 
         Random random = new Random();
         int tiroDado = random.nextInt(100) + 1;
-        statoMissione = StatoMissione.CONCLUSA;
+        statoMissione = Quest.StatoMissione.CONCLUSA;
 
         if (tiroDado <= probabilitaDiSuccesso) {
             return new EsitoMissione (true, this.ricompensa, this.reputazione);

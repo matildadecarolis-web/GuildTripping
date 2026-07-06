@@ -19,7 +19,10 @@ public class GeneratoreBase implements GeneratoreMissioni{
 
     private final Random random;
 
-    public GeneratoreBase() {
+    private final CalcolatoreProbabilitaStrategy calcolatoreProbabilita;
+
+    public GeneratoreBase(CalcolatoreProbabilitaStrategy calcolatore) {
+        this.calcolatoreProbabilita = calcolatore;
         this.random = new Random();
     }
 
@@ -39,7 +42,7 @@ public class GeneratoreBase implements GeneratoreMissioni{
             }
 
             String nomeScelto = NOMI_MISSIONI[random.nextInt(NOMI_MISSIONI.length)];
-            nuoveMissioni.add(new MissioneSingola(nomeScelto, difficoltaGenerata));
+            nuoveMissioni.add(new MissioneSingola(nomeScelto, difficoltaGenerata, this.calcolatoreProbabilita));
         }
         return nuoveMissioni;
     }
