@@ -1,22 +1,26 @@
 package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
+import it.unicam.cs.mpgc.rpg130903.model.eroe.ProgressioneEroeStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestoreEroi implements AmministrazioneEroi {
+public class GestoreEroi implements AmministrazioneEroi, GestoreTurno {
 
     private List<Eroe> listaEroi;
+    private ProgressioneEroeStrategy strategiaDiBase;
 
     private static int contatoreEroi = 0;
     private static final int EROI_BASE = 3;
     private static final double FATTORE_ESPANSIONE = 1.5;
 
-    public GestoreEroi(int numeroEroiIniziali) {
+    public GestoreEroi(int numeroEroiIniziali, ProgressioneEroeStrategy strategiaDiBase) {
         this.listaEroi = new ArrayList<>();
+        this.strategiaDiBase = strategiaDiBase;
+
         for (int i = 0; i < numeroEroiIniziali; i++){
-            this.listaEroi.add(new Eroe("Recluta numero " + contatoreEroi));
+            this.listaEroi.add(new Eroe("Recluta numero " + contatoreEroi, 1, this.strategiaDiBase));
             contatoreEroi ++;
         }
     }
@@ -31,11 +35,10 @@ public class GestoreEroi implements AmministrazioneEroi {
         int differenza = target - listaEroi.size();
         if (differenza > 0) {
             for (int i = 0; i < differenza; i++) {
-                this.listaEroi.add(new Eroe("Nuovo eroe " + contatoreEroi, nuovoPrestigio));
+                this.listaEroi.add(new Eroe("Nuovo eroe " + contatoreEroi, nuovoPrestigio, this.strategiaDiBase));
                 contatoreEroi ++;
             }
         }
-       return;
     }
 
     @Override
@@ -82,7 +85,7 @@ public class GestoreEroi implements AmministrazioneEroi {
 
     public int getLivelloMinimo() {
         if (listaEroi.isEmpty()) return 1;
-        int min = listaEroi.getFirst().getLivelloOperativo();
+        int min = listaEroi.get(0).getLivelloOperativo();
         for (Eroe e : listaEroi) {
             if (e.getLivelloOperativo() < min) min = e.getLivelloOperativo();
         }
@@ -91,7 +94,7 @@ public class GestoreEroi implements AmministrazioneEroi {
 
     public int getLivelloMassimo() {
         if (listaEroi.isEmpty()) return 1;
-        int max = listaEroi.getFirst().getLivelloOperativo();
+        int max = listaEroi.get(0).getLivelloOperativo();
         for (Eroe e : listaEroi) {
             if (e.getLivelloOperativo() > max) max = e.getLivelloOperativo();
         }
@@ -101,7 +104,21 @@ public class GestoreEroi implements AmministrazioneEroi {
     @Override
     public void riposaEroi() {
     for (Eroe eroe: this.listaEroi){
-        eroe.riposo();
+        try {
+            eroe.riposo();
+        } catch (IllegalStateException e){
+
         }
+    }
+    }
+
+    @Override
+    public void iniziaGiornata() {
+
+    }
+
+    @Override
+    public void terminaTurno() {
+        this.riposaEroi();
     }
 }
