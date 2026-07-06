@@ -4,31 +4,25 @@ public class StatoInMissione implements StatoEroe{
 
     @Override
     public boolean pronto(Eroe eroe) {
-        System.out.println(eroe.getNome() + " è già in missione");
         return false;
     }
 
     @Override
-    public void riposo(Eroe eroe) {
-        System.out.println(eroe.getNome() + " è in missione non può riposare");
+    public StatoEroe riposo(Eroe eroe) {
+        throw new IllegalStateException("L'eroe non può riposarsi in missione");
     }
 
     @Override
-    public void inMissione(Eroe eroe) {
-        System.out.println(eroe.getNome() + " è già sul campo di battaglia");
+    public StatoEroe inMissione(Eroe eroe) {
+        return this;
     }
 
     @Override
-    public void ritornaDallaMissione(Eroe eroe, boolean esitoPositivo) {
-        System.out.println(eroe.getNome() + " è tornato dalla sua avventura.");
+    public StatoEroe ritornaDallaMissione(Eroe eroe, boolean esitoPositivo) {
 
         if (esitoPositivo){
-            System.out.println("Vittoria! La missione è stata un successo.");
             eroe.aggiungiMissioneCompletata();
         }
-        else {
-            System.out.println("Sconfitta... La missione è fallita");
-        }
-        eroe.setStato(new StatoStanco());
+        return new StatoStanco();
     }
 }

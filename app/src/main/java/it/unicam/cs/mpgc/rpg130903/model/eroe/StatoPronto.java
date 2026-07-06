@@ -7,18 +7,17 @@ public class StatoPronto implements StatoEroe {
     }
 
     @Override
-    public void riposo(Eroe eroe) {
-        System.out.println(eroe.getNome() + " è già riposato e pronto all'azione");
+    public StatoEroe riposo(Eroe eroe) {
+    return this;
     }
 
     @Override
-    public void inMissione(Eroe eroe) {
-        System.out.println(eroe.getNome() + " parte per la missione!");
-        eroe.setStato(new StatoInMissione());
+    public StatoEroe inMissione(Eroe eroe) {
+        return new StatoInMissione();
     }
 
     @Override
-    public void ritornaDallaMissione(Eroe eroe, boolean esitoPositivo) {
-        System.out.println(eroe.getNome() + " non era in missione");
+    public StatoEroe ritornaDallaMissione(Eroe eroe, boolean esitoPositivo) {
+        return this;
     }
 }

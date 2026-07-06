@@ -1,59 +1,63 @@
 package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
-public class Eroe {
+import it.unicam.cs.mpgc.rpg130903.model.missione.Assegnabile;
+
+public class Eroe implements Assegnabile {
     private final String nome;
-    private StatoEroe statocorrente;
+    private StatoEroe statoCorrente;
     private int livello;
     private int stipendio;
-    private int missionicompletate;
+    private int missioniCompletate;
 
 
     public Eroe(String nome){
+        this(nome, 1);
+    }
+
+    public Eroe(String nome, int livelloIniziale){
         this.nome = nome;
-        this.statocorrente = new StatoPronto();
-        this.livello = 1;
-        this.missionicompletate = 0;
+        this.livello = livelloIniziale;
+        this.statoCorrente = new StatoPronto();
+        this.missioniCompletate = 0;
         this.calcolaStipendio();
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public int getLivelloOperativo() {
+        return livello;
     }
 
-    public int getLivello() {
-        return livello;
+    @Override
+    public String getNomeSchieramento() {
+        return nome;
     }
 
     public int getStipendio() {
         return stipendio;
     }
 
-    public void setStato(StatoEroe NuovoStato){
-        this.statocorrente = NuovoStato;
-    }
-
     public boolean pronto() {
-        return statocorrente.pronto(this);
+        return statoCorrente.pronto(this);
     }
 
     public void riposo(){
-        statocorrente.riposo(this);
+        this.statoCorrente = this.statoCorrente.riposo(this);
     }
 
     public void inmissione(){
-        statocorrente.inMissione((this));
+        this.statoCorrente = this.statoCorrente.inMissione((this));
     }
 
     public void aggiungiMissioneCompletata() {
-        this.missionicompletate++;
+        this.missioniCompletate++;
         controllaLevelUp();
     }
 
     public void controllaLevelUp(){
         int costantelivello = 1;
-        if (this.missionicompletate >= (this.livello + costantelivello)){
+        if (this.missioniCompletate >= (this.livello + costantelivello)){
             this.livello++;
-            this.missionicompletate = 0;
+            this.missioniCompletate = 0;
             calcolaStipendio();
             System.out.println("Congratulazioni " + this.nome + " è ora al livello" + this.livello + " e il suo stipendio è aumentato. Nuovo Stipendio" + this.stipendio);
         }
@@ -65,6 +69,6 @@ public class Eroe {
     }
 
     public void concludiMissione (boolean esitoPositivo){
-        statocorrente.ritornaDallaMissione(this, esitoPositivo);
+        this.statoCorrente = this.statoCorrente.ritornaDallaMissione(this, esitoPositivo);
     }
 }

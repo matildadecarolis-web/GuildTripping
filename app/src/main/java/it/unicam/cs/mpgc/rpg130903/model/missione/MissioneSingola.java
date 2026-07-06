@@ -4,55 +4,68 @@ import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 
 import java.util.Random;
 
-public class Missione {
+public class MissioneSingola implements Quest{
     private final String descrizione;
     private final int difficolta;
     private final int ricompensa;
     private final int reputazione;
-    private Eroe eroeAssegnato;
+    private Assegnabile assegnabile;
     private StatoMissione statoMissione;
 
     private static final int COSTANTE_RICOMPENSA = 20;
     private static final int COSTANTE_REPUTAZIONE = 100;
 
-    public enum StatoMissione {DISPONIBILE, IN_CORSO, CONCLUSA}
 
-    public Missione(String descrizione, int difficolta) {
+    public MissioneSingola(String descrizione, int difficolta) {
         this.descrizione = descrizione;
         this.difficolta = difficolta;
         this.ricompensa = difficolta * COSTANTE_RICOMPENSA;
         this.reputazione = difficolta * COSTANTE_REPUTAZIONE;
         statoMissione = StatoMissione.DISPONIBILE;
-        this.eroeAssegnato = null;
+        this.assegnabile = null;
     }
-
+    @Override
     public String getDescrizione() {
         return descrizione;
     }
 
+    @Override
+    public int getDifficolta() {
+        return difficolta;
+    }
+
+    @Override
     public int getRicompensa() {
         return ricompensa;
     }
 
+    @Override
     public int getReputazione() {
         return reputazione;
     }
 
-    public void assegna(Eroe eroe) {
+    @Override
+    public void assegna(Assegnabile assegnabile) {
         if (statoMissione == StatoMissione.DISPONIBILE) {
-            this.eroeAssegnato = eroe;
+            this.assegnabile = assegnabile;
             statoMissione = StatoMissione.IN_CORSO;
         } else throw new IllegalStateException("Fra la missione non è disponibile!");
     }
 
+    @Override
+    public StatoMissione getStato() {
+        return statoMissione;
+    }
+
+    @Override
     public EsitoMissione risolvi() {
         if (statoMissione == StatoMissione.DISPONIBILE || statoMissione == StatoMissione.CONCLUSA) {
             throw new IllegalStateException("Fra la missione non è in corso!");
         }
         System.out.println("--- Risoluzione Missione: " + this.descrizione + " ---");
-        System.out.println("Difficoltà: " + this.difficolta + " | Eroe: " + eroeAssegnato.getNome() + " (Livello " + eroeAssegnato.getLivello() + ")");
+        System.out.println("Difficoltà: " + this.difficolta + " | Eroe: " + assegnabile.getNomeSchieramento() + " (Livello " + assegnabile.getLivelloOperativo() + ")");
 
-        int delta = eroeAssegnato.getLivello() - this.difficolta;
+        int delta = assegnabile.getLivelloOperativo() - this.difficolta;
         int probabilitaDiSuccesso = 70;
         probabilitaDiSuccesso += (delta * 10);
 

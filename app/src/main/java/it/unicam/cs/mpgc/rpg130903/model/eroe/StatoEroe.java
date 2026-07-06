@@ -4,9 +4,9 @@ public interface StatoEroe {
 
     boolean pronto(Eroe eroe);
 
-    void riposo(Eroe eroe);
+    StatoEroe riposo(Eroe eroe);
 
-    void inMissione(Eroe eroe);
+    StatoEroe inMissione(Eroe eroe);
 
-    void ritornaDallaMissione (Eroe eroe, boolean esitoPositivo);
+    StatoEroe ritornaDallaMissione (Eroe eroe, boolean esitoPositivo);
 }
