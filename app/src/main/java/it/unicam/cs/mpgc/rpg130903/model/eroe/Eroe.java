@@ -8,18 +8,23 @@ public class Eroe implements Assegnabile {
     private int livello;
     private int stipendio;
     private int missioniCompletate;
+    private ProgressioneEroeStrategy strategiaProgressione;
+
+    private static final int COSTANTE_LIVELLO = 1;
+    private static final int COSTANTE_STIPENDIO = 10;
 
 
     public Eroe(String nome){
-        this(nome, 1);
+        this(nome, 1, new ProgressioneStandard());
     }
 
-    public Eroe(String nome, int livelloIniziale){
+    public Eroe(String nome, int livelloIniziale, ProgressioneEroeStrategy strategia){
         this.nome = nome;
         this.livello = livelloIniziale;
         this.statoCorrente = new StatoPronto();
         this.missioniCompletate = 0;
-        this.calcolaStipendio();
+        this.strategiaProgressione = strategia;
+        this.stipendio = this.strategiaProgressione.calcolaNuovoStipendio(this.livello);
     }
 
     @Override
@@ -54,18 +59,11 @@ public class Eroe implements Assegnabile {
     }
 
     public void controllaLevelUp(){
-        int costantelivello = 1;
-        if (this.missioniCompletate >= (this.livello + costantelivello)){
+        if (this.strategiaProgressione.verificaLevelUp(this.missioniCompletate, this.livello)){
             this.livello++;
             this.missioniCompletate = 0;
-            calcolaStipendio();
-            System.out.println("Congratulazioni " + this.nome + " è ora al livello" + this.livello + " e il suo stipendio è aumentato. Nuovo Stipendio" + this.stipendio);
+            this.stipendio = this.strategiaProgressione.calcolaNuovoStipendio(this.livello);
         }
-    }
-
-    public void calcolaStipendio(){
-        int costantestipendio = 10;
-        this.stipendio = this.livello * costantestipendio;
     }
 
     public void concludiMissione (boolean esitoPositivo){
