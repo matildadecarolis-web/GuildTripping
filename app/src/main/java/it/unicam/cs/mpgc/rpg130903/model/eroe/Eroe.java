@@ -44,7 +44,7 @@ public class Eroe implements Assegnabile {
         this.statoCorrente = this.statoCorrente.riposo(this);
     }
 
-    public void inmissione(){
+    public void inMissione(){
         this.statoCorrente = this.statoCorrente.inMissione((this));
     }
 

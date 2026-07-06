@@ -7,4 +7,7 @@ public interface Assegnabile {
     int getLivelloOperativo();
 
     String getNomeSchieramento();
+
+    void inMissione();
+
 }

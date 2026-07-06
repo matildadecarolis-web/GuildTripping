@@ -16,6 +16,12 @@ public interface AmministrazioneEroi {
 
     double calcolaLivelloMedio();
 
+    int getLivelloMinimo();
+
+    int getLivelloMassimo();
+
     void riposaEroi();
+
+    public int getNumeroEroi();
 
 }

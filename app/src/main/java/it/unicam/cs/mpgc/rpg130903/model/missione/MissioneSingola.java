@@ -13,7 +13,7 @@ public class MissioneSingola implements Quest{
     private StatoMissione statoMissione;
 
     private static final int COSTANTE_RICOMPENSA = 20;
-    private static final int COSTANTE_REPUTAZIONE = 100;
+    private static final int COSTANTE_REPUTAZIONE = 10;
 
 
     public MissioneSingola(String descrizione, int difficolta) {

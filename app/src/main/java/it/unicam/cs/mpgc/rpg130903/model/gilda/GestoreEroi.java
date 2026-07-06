@@ -17,6 +17,7 @@ public class GestoreEroi implements AmministrazioneEroi {
         this.listaEroi = new ArrayList<>();
         for (int i = 0; i < numeroEroiIniziali; i++){
             this.listaEroi.add(new Eroe("Recluta numero " + contatoreEroi));
+            contatoreEroi ++;
         }
     }
 
@@ -54,13 +55,13 @@ public class GestoreEroi implements AmministrazioneEroi {
 
     @Override
     public List<Eroe> pronti() {
-        List<Eroe> dispinibili = new ArrayList<>();
+        List<Eroe> disponibili = new ArrayList<>();
         for (Eroe eroe : listaEroi){
             if (eroe.pronto()){
-                dispinibili.add(eroe);
+                disponibili.add(eroe);
             }
         }
-        return dispinibili;
+        return disponibili;
     }
 
     @Override
@@ -70,9 +71,31 @@ public class GestoreEroi implements AmministrazioneEroi {
         }
         double sommaLivello = 0;
         for (Eroe eroe : listaEroi) {
-            sommaLivello = eroe.getLivelloOperativo();
+            sommaLivello += eroe.getLivelloOperativo();
         }
         return sommaLivello/ listaEroi.size();
+    }
+
+    public int getNumeroEroi() {
+        return this.listaEroi.size();
+    }
+
+    public int getLivelloMinimo() {
+        if (listaEroi.isEmpty()) return 1;
+        int min = listaEroi.getFirst().getLivelloOperativo();
+        for (Eroe e : listaEroi) {
+            if (e.getLivelloOperativo() < min) min = e.getLivelloOperativo();
+        }
+        return min;
+    }
+
+    public int getLivelloMassimo() {
+        if (listaEroi.isEmpty()) return 1;
+        int max = listaEroi.getFirst().getLivelloOperativo();
+        for (Eroe e : listaEroi) {
+            if (e.getLivelloOperativo() > max) max = e.getLivelloOperativo();
+        }
+        return max;
     }
 
     @Override
