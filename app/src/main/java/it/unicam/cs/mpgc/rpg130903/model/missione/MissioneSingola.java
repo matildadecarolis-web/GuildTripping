@@ -54,7 +54,7 @@ public class MissioneSingola implements Quest{
         if (statoMissione == Quest.StatoMissione.DISPONIBILE) {
             this.assegnabile = assegnabile;
             statoMissione = Quest.StatoMissione.IN_CORSO;
-        } else throw new IllegalStateException("Fra la missione non è disponibile!");
+        } else throw new IllegalStateException("Impossibile assegnare la missione");
     }
 
     @Override

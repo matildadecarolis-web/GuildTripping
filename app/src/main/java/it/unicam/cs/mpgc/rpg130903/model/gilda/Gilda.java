@@ -4,7 +4,7 @@ import it.unicam.cs.mpgc.rpg130903.model.missione.EsitoMissione;
 
 import java.util.List;
 
-public class Gilda implements GestoreTurno{
+public class Gilda {
     private int prestigio;
     private int reputazione;
     private int nextLevelContatore;
@@ -73,7 +73,6 @@ public class Gilda implements GestoreTurno{
         this.gestoreEroi.espandiListaEroi(this.prestigio);
     }
 
-    @Override
     public void iniziaGiornata() {
         ((GestoreTurno) this.gestoreMissioni).iniziaGiornata();
 
@@ -84,22 +83,28 @@ public class Gilda implements GestoreTurno{
         );
     }
 
-    public void terminaTurno() {
+    public ReportTurno terminaTurno() {
+        int entrateDelGiorno = 0;
+        int reputazioneDelGiorno = 0;
+
         List<EsitoMissione> esitiDiOggi = this.gestoreMissioni.risolviMissioniGiornaliere();
 
         for (EsitoMissione esito : esitiDiOggi) {
+            entrateDelGiorno += esito.getVariazioneFinanze();
+            reputazioneDelGiorno += esito.getVariazioneReputazione();
+
             this.gestoreFinanze.aggiungiFondi(esito.getVariazioneFinanze());
             this.aggiungiReputazione(esito.getVariazioneReputazione());
         }
 
         int stipendiTotali = this.gestoreEroi.calcolaStipendiTotali();
-        boolean pagamentoRiuscito = this.gestoreFinanze.deduciFondi(stipendiTotali);
-
-        if (!pagamentoRiuscito || this.gestoreFinanze.bancarotta()) {
-            System.out.println("ATTENZIONE: La Gilda è in bancarotta!");
-        }
+        this.gestoreFinanze.deduciFondi(stipendiTotali);
 
         this.gestoreEroi.riposaEroi();
+
+        boolean bancarotta = this.gestoreFinanze.bancarotta();
+
+        return new ReportTurno(entrateDelGiorno, stipendiTotali, reputazioneDelGiorno, esitiDiOggi, bancarotta);
     }
 
 }
