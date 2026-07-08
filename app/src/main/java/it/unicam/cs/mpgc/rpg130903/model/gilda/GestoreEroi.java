@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
+import it.unicam.cs.mpgc.rpg130903.model.eroe.GeneratoreEroi;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.ProgressioneEroeStrategy;
 
 import java.util.ArrayList;
@@ -9,20 +10,16 @@ import java.util.List;
 public class GestoreEroi implements AmministrazioneEroi, GestoreTurno {
 
     private List<Eroe> listaEroi;
-    private ProgressioneEroeStrategy strategiaDiBase;
+    private GeneratoreEroi generatore;
 
-    private static int contatoreEroi = 0;
     private static final int EROI_BASE = 3;
     private static final double FATTORE_ESPANSIONE = 1.5;
 
-    public GestoreEroi(int numeroEroiIniziali, ProgressioneEroeStrategy strategiaDiBase) {
+    public GestoreEroi(GeneratoreEroi generatore) {
         this.listaEroi = new ArrayList<>();
-        this.strategiaDiBase = strategiaDiBase;
+        this.generatore = generatore;
 
-        for (int i = 0; i < numeroEroiIniziali; i++){
-            this.listaEroi.add(new Eroe("Recluta numero " + contatoreEroi, 1, this.strategiaDiBase));
-            contatoreEroi ++;
-        }
+        this.listaEroi.addAll(this.generatore.generaEroi(EROI_BASE, 1));
     }
 
     private int calcolaCapienzaMassima (int prestigio) {
@@ -34,10 +31,7 @@ public class GestoreEroi implements AmministrazioneEroi, GestoreTurno {
         int target = calcolaCapienzaMassima(nuovoPrestigio);
         int differenza = target - listaEroi.size();
         if (differenza > 0) {
-            for (int i = 0; i < differenza; i++) {
-                this.listaEroi.add(new Eroe("Nuovo eroe " + contatoreEroi, nuovoPrestigio, this.strategiaDiBase));
-                contatoreEroi ++;
-            }
+                this.listaEroi.addAll(this.generatore.generaEroi(differenza, nuovoPrestigio));
         }
     }
 
