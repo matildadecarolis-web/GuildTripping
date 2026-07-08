@@ -2,9 +2,10 @@ package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
 import it.unicam.cs.mpgc.rpg130903.model.missione.EsitoMissione;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Gilda {
+public class Gilda{
     private int prestigio;
     private int reputazione;
     private int nextLevelContatore;
@@ -15,6 +16,8 @@ public class Gilda {
     private final AmministrazioneFinanze gestoreFinanze;
     private final AmministrazioneMissioni gestoreMissioni;
 
+    private final List<GestoreTurno> iscrittiAlTurno;
+
 
     public Gilda(AmministrazioneEroi gestoreEroi, AmministrazioneFinanze gestoreFinanze, int nextLevelContatore, int reputazione, int prestigio, AmministrazioneMissioni gestoreMissioni) {
         this.gestoreEroi = gestoreEroi;
@@ -23,6 +26,15 @@ public class Gilda {
         this.reputazione = reputazione;
         this.prestigio = prestigio;
         this.gestoreMissioni = gestoreMissioni;
+
+        this.iscrittiAlTurno = new ArrayList<>();
+
+        if(gestoreMissioni instanceof GestoreTurno) {
+            this.iscrittiAlTurno.add((GestoreTurno) gestoreMissioni);
+        }
+        if(gestoreEroi instanceof GestoreTurno) {
+            this.iscrittiAlTurno.add((GestoreTurno) gestoreEroi);
+        }
     }
 
     public AmministrazioneEroi getGestoreEroi() {
@@ -74,7 +86,9 @@ public class Gilda {
     }
 
     public void iniziaGiornata() {
-        ((GestoreTurno) this.gestoreMissioni).iniziaGiornata();
+        for (GestoreTurno gestore : iscrittiAlTurno) {
+            gestore.iniziaGiornata();
+        }
 
         this.gestoreMissioni.generaNuoveMissioni(
                 this.gestoreEroi.getNumeroEroi(),
