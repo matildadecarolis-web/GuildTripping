@@ -10,4 +10,6 @@ public interface Assegnabile {
 
     void inMissione();
 
+    void concludiMissione(boolean esitoPositivo);
+
 }

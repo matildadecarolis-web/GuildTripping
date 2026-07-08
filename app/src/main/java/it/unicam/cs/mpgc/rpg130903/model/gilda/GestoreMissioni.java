@@ -8,14 +8,16 @@ import it.unicam.cs.mpgc.rpg130903.model.missione.GeneratoreMissioni;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestoreMissioni implements AmministrazioneMissioni {
+public class GestoreMissioni implements AmministrazioneMissioni, GestoreTurno{
 
     private List<Quest> listaQuest;
     private final GeneratoreMissioni fabbricaMissioni;
+    private List<EsitoMissione> esitiGiornalieri;
 
     public GestoreMissioni(GeneratoreMissioni fabbricaMissioni) {
         this.listaQuest = new ArrayList<>();
         this.fabbricaMissioni = fabbricaMissioni;
+        this.esitiGiornalieri = new ArrayList<>();
     }
 
     @Override
@@ -67,4 +69,12 @@ public class GestoreMissioni implements AmministrazioneMissioni {
     }
 
 
+    @Override
+    public void iniziaGiornata() {
+
+    }
+
+    @Override
+    public void terminaTurno() {
+        }
 }

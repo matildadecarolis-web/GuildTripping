@@ -74,8 +74,10 @@ public class MissioneSingola implements Quest{
         statoMissione = Quest.StatoMissione.CONCLUSA;
 
         if (tiroDado <= probabilitaDiSuccesso) {
+            this.assegnabile.concludiMissione(true);
             return new EsitoMissione (true, this.ricompensa, this.reputazione);
         } else {
+            this.assegnabile.concludiMissione(false);
             return new EsitoMissione (false, 0, -this.reputazione);
         }
 
