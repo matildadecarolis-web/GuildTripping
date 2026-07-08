@@ -71,10 +71,18 @@ public class GestoreMissioni implements AmministrazioneMissioni, GestoreTurno{
 
     @Override
     public void iniziaGiornata() {
-
+        List<Quest> missioniDaMantenere = new ArrayList<>();
+        for (Quest quest : listaQuest){
+            if (quest.getStato() != Quest.StatoMissione.DISPONIBILE) {
+                missioniDaMantenere.add(quest);
+            }
+        }
+        this.listaQuest = missioniDaMantenere;
+        this.esitiGiornalieri.clear();
     }
 
     @Override
     public void terminaTurno() {
+        this.esitiGiornalieri = this.risolviMissioniGiornaliere();
         }
 }

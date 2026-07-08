@@ -9,7 +9,7 @@ public class StatoInMissione implements StatoEroe{
 
     @Override
     public StatoEroe riposo(Eroe eroe) {
-        throw new IllegalStateException("L'eroe non può riposarsi in missione");
+        return this;
     }
 
     @Override

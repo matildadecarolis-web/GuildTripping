@@ -104,13 +104,10 @@ public class GestoreEroi implements AmministrazioneEroi, GestoreTurno {
     @Override
     public void riposaEroi() {
     for (Eroe eroe: this.listaEroi){
-        try {
-            eroe.riposo();
-        } catch (IllegalStateException e){
-
+        eroe.riposo();
         }
     }
-    }
+
 
     @Override
     public void iniziaGiornata() {
