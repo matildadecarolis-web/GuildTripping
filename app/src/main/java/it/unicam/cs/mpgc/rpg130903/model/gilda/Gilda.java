@@ -1,6 +1,10 @@
 package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
-public class Gilda {
+import it.unicam.cs.mpgc.rpg130903.model.missione.EsitoMissione;
+
+import java.util.List;
+
+public class Gilda implements GestoreTurno{
     private int prestigio;
     private int reputazione;
     private int nextLevelContatore;
@@ -9,13 +13,16 @@ public class Gilda {
 
     private final AmministrazioneEroi gestoreEroi;
     private final AmministrazioneFinanze gestoreFinanze;
+    private final AmministrazioneMissioni gestoreMissioni;
 
-    public Gilda(AmministrazioneEroi gestoreEroi, AmministrazioneFinanze gestoreFinanze, int nextLevelContatore, int reputazione, int prestigio) {
+
+    public Gilda(AmministrazioneEroi gestoreEroi, AmministrazioneFinanze gestoreFinanze, int nextLevelContatore, int reputazione, int prestigio, AmministrazioneMissioni gestoreMissioni) {
         this.gestoreEroi = gestoreEroi;
         this.gestoreFinanze = gestoreFinanze;
         this.nextLevelContatore = nextLevelContatore;
         this.reputazione = reputazione;
         this.prestigio = prestigio;
+        this.gestoreMissioni = gestoreMissioni;
     }
 
     public AmministrazioneEroi getGestoreEroi() {
@@ -24,6 +31,10 @@ public class Gilda {
 
     public AmministrazioneFinanze getGestoreFinanze() {
         return gestoreFinanze;
+    }
+
+    public AmministrazioneMissioni getGestoreMissioni() {
+        return gestoreMissioni;
     }
 
     public int getPrestigio() {
@@ -62,8 +73,33 @@ public class Gilda {
         this.gestoreEroi.espandiListaEroi(this.prestigio);
     }
 
-    public boolean terminaTurno(){
-        return false;
+    @Override
+    public void iniziaGiornata() {
+        ((GestoreTurno) this.gestoreMissioni).iniziaGiornata();
+
+        this.gestoreMissioni.generaNuoveMissioni(
+                this.gestoreEroi.getNumeroEroi(),
+                this.gestoreEroi.getLivelloMinimo(),
+                this.gestoreEroi.getLivelloMassimo()
+        );
+    }
+
+    public void terminaTurno() {
+        List<EsitoMissione> esitiDiOggi = this.gestoreMissioni.risolviMissioniGiornaliere();
+
+        for (EsitoMissione esito : esitiDiOggi) {
+            this.gestoreFinanze.aggiungiFondi(esito.getVariazioneFinanze());
+            this.aggiungiReputazione(esito.getVariazioneReputazione());
+        }
+
+        int stipendiTotali = this.gestoreEroi.calcolaStipendiTotali();
+        boolean pagamentoRiuscito = this.gestoreFinanze.deduciFondi(stipendiTotali);
+
+        if (!pagamentoRiuscito || this.gestoreFinanze.bancarotta()) {
+            System.out.println("ATTENZIONE: La Gilda è in bancarotta!");
+        }
+
+        this.gestoreEroi.riposaEroi();
     }
 
 }

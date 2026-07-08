@@ -17,4 +17,6 @@ public interface AmministrazioneMissioni {
         void assegnaMissione(Quest missione, Assegnabile eroe);
 
         void generaNuoveMissioni (int numeroEroi, int livelloMin, int livelloMax);
+
+        List<EsitoMissione> getEsitiGiornalieri();
 }

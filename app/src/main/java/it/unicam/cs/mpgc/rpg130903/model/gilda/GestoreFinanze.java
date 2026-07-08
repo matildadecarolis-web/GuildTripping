@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
-public class GestoreFinanze implements AmministrazioneFinanze{
+public class GestoreFinanze implements AmministrazioneFinanze, GestoreTurno{
 
     private int saldo;
 
@@ -32,5 +32,15 @@ public class GestoreFinanze implements AmministrazioneFinanze{
     @Override
     public boolean bancarotta() {
         return saldo <= 0;
+    }
+
+    @Override
+    public void iniziaGiornata() {
+
+    }
+
+    @Override
+    public void terminaTurno() {
+
     }
 }

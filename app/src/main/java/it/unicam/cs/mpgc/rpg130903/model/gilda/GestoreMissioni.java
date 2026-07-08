@@ -20,11 +20,16 @@ public class GestoreMissioni implements AmministrazioneMissioni, GestoreTurno{
         this.esitiGiornalieri = new ArrayList<>();
     }
 
+    public List<EsitoMissione> getEsitiGiornalieri() {
+        return this.esitiGiornalieri;
+    }
+
     @Override
     public void generaNuoveMissioni(int numeroEroi, int livelloMin, int livelloMax) {
         List<Quest> nuove = this.fabbricaMissioni.creaMissioniDelGiorno(numeroEroi, livelloMin, livelloMax);
         this.listaQuest.addAll(nuove);
     }
+
 
     @Override
     public List<Quest> disponibili() {
@@ -73,7 +78,7 @@ public class GestoreMissioni implements AmministrazioneMissioni, GestoreTurno{
     public void iniziaGiornata() {
         List<Quest> missioniDaMantenere = new ArrayList<>();
         for (Quest quest : listaQuest){
-            if (quest.getStato() != Quest.StatoMissione.DISPONIBILE) {
+            if (quest.getStato() == Quest.StatoMissione.IN_CORSO) {
                 missioniDaMantenere.add(quest);
             }
         }
