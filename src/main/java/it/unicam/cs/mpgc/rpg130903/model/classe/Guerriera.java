@@ -8,7 +8,7 @@ public class Guerriera implements Classe{
 
     @Override
     public String getName() {
-        return "Rebecca";
+        return "Guerriera";
     }
 
     @Override

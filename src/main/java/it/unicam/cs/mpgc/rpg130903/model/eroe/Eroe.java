@@ -13,11 +13,11 @@ public interface Eroe {
 
     int allenamento();
 
-    boolean stanco();
-    boolean malato();
+    boolean isEsausto();
+    boolean isMalato();
 
     void spendiEnergia(int valore);
-    void spediSalute(int valore);
+    void perdiSalute(int valore);
 
     void riempiEnergia();
     void riempiSalute();

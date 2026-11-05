@@ -30,7 +30,7 @@ public class EroeBase implements Eroe{
         }
 
         if (maxStat <= 0) {
-            throw new IllegalArgumentException("Le statistiche non possono essere negative");
+            throw new IllegalArgumentException("Le statistiche devono essere positive");
         }
 
         this.nome = nome;
@@ -38,6 +38,7 @@ public class EroeBase implements Eroe{
         this.maxStat = maxStat;
         this.energia = maxStat;
         this.salute = maxStat;
+        this.forza = classe.getForzaIniziale();
     }
 
     @Override
@@ -78,12 +79,12 @@ public class EroeBase implements Eroe{
     }
 
     @Override
-    public boolean stanco() {
+    public boolean isEsausto() {
         return energia == 0;
     }
 
     @Override
-    public boolean malato() {
+    public boolean isMalato() {
         return salute == 0;
     }
 
@@ -93,18 +94,18 @@ public class EroeBase implements Eroe{
     }
 
     @Override
-    public void spediSalute(int valore) {
+    public void perdiSalute(int valore) {
         salute = diminuisci(salute, valore);
     }
 
     @Override
     public void riempiEnergia() {
-
+    energia = maxStat;
     }
 
     @Override
     public void riempiSalute() {
-
+    salute = maxStat;
     }
 
     private static int diminuisci(int corrente, int valore) {

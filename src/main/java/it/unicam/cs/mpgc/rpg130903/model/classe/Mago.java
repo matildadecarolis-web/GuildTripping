@@ -8,7 +8,7 @@ public final class Mago implements Classe {
 
     @Override
     public String getName() {
-        return "Merlino";
+        return "Mago";
     }
 
     @Override
@@ -23,6 +23,6 @@ public final class Mago implements Classe {
 
     @Override
     public int getForzaGuadagnata(int forzaAttuale) {
-        return AUMENTO_BASE * forzaAttuale / FATTORE_AUMENTO_PROGRESSIVO;
+        return AUMENTO_BASE + forzaAttuale / FATTORE_AUMENTO_PROGRESSIVO;
     }
 }

@@ -2,14 +2,14 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 
 public class Ladra implements Classe{
     private static final int FORZA_INIZIALE = 9;
-    private static final int AUMENTO_MINIMO = 4;
-    private static final int AUMENTO_MASSIMO = 1;
+    private static final int AUMENTO_MINIMO = 1;
+    private static final int AUMENTO_MASSIMO = 4;
     private static final int FATTORE_AUMENTO_PROGRESSIVO = 10;
 
 
     @Override
     public String getName() {
-        return "Robin";
+        return "Ladra";
     }
 
     @Override
