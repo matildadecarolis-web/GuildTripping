@@ -1,13 +1,13 @@
 package it.unicam.cs.mpgc.rpg130903.model.classe;
 
-public class Guerriera implements Classe{
+public final class Guerriera implements Classe{
 
     private static final int FORZA_INIZIALE = 12;
     private static final int FATTORE_AUMENTO_PROGRESSIVO = 3;
 
 
     @Override
-    public String getName() {
+    public String getNome() {
         return "Guerriera";
     }
 

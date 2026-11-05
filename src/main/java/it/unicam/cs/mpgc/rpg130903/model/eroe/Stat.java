@@ -26,7 +26,7 @@ public interface Stat {
         return eroe.getMaxStat() - valore(eroe);
     }
 
-    default boolean isDepleted(Eroe eroe) {
+    default boolean isEsaurita(Eroe eroe) {
         return valore(eroe) == 0;
     }
 }

@@ -2,11 +2,11 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 
 /**
  * La classe di un eroe (Guerriero, Mago, Ladro...).
- * Decide la forza iniziale e come cresce la forza ccon l'addestramento.
+ * Decide la forza iniziale e come cresce la forza con l'addestramento.
  */
 public interface Classe {
 
-    String getName();
+    String getNome();
     String getDescrizione();
     int getForzaIniziale();
 

@@ -108,6 +108,14 @@ public class EroeBase implements Eroe{
     salute = maxStat;
     }
 
+    /**
+     * Sottrae una quantità da un valore senza scendere sotto zero.
+     *
+     * @param corrente valore attuale
+     * @param valore   quantità da sottrarre, non negativa
+     * @return il nuovo valore, mai negativo
+     * @throws IllegalArgumentException se {@code valore} è negativo
+     */
     private static int diminuisci(int corrente, int valore) {
         if (valore < 0) {
             throw new IllegalArgumentException("Il valore non può essere negativo");
