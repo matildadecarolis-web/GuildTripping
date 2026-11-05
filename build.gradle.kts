@@ -1,8 +1,9 @@
 plugins {
     id("java")
+    id("application")
 }
 
-group = "org.example"
+group = "it.unicam.cs.mpgc.rpg130903"
 version = "1.0-SNAPSHOT"
 
 repositories {

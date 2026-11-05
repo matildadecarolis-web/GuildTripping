@@ -1,0 +1,116 @@
+package it.unicam.cs.mpgc.rpg130903.model.eroe;
+
+import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
+
+/**
+ * Implementazione standard di {@link Eroe}.
+ * <p>
+ * Custodisce lo stato dell'eroe e ne garantisce i vincoli:
+ * Un eroe appena creato ha energia e salute al massimo e la forza iniziale della sua classe.
+ * </p>
+ */
+
+public class EroeBase implements Eroe{
+
+    private final String nome;
+    private final Classe classe;
+    private final int maxStat;
+    private int forza;
+    private int energia;
+    private int salute;
+
+    public EroeBase(String nome, Classe classe, int maxStat) {
+
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Il nome non può essere vuoto");
+        }
+
+        if ( classe == null) {
+            throw new IllegalArgumentException("La classe non può essere nulla");
+        }
+
+        if (maxStat <= 0) {
+            throw new IllegalArgumentException("Le statistiche non possono essere negative");
+        }
+
+        this.nome = nome;
+        this.classe = classe;
+        this.maxStat = maxStat;
+        this.energia = maxStat;
+        this.salute = maxStat;
+    }
+
+    @Override
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public Classe getClasse() {
+        return classe;
+    }
+
+    @Override
+    public int getEnergia() {
+        return energia;
+    }
+
+    @Override
+    public int getSalute() {
+        return salute;
+    }
+
+    @Override
+    public int getForza() {
+        return forza;
+    }
+
+    @Override
+    public int getMaxStat() {
+        return maxStat;
+    }
+
+    @Override
+    public int allenamento() {
+        int guadagno = classe.getForzaGuadagnata(forza);
+        forza += guadagno;
+        return forza;
+    }
+
+    @Override
+    public boolean stanco() {
+        return energia == 0;
+    }
+
+    @Override
+    public boolean malato() {
+        return salute == 0;
+    }
+
+    @Override
+    public void spendiEnergia(int valore) {
+        energia = diminuisci(energia, valore);
+    }
+
+    @Override
+    public void spediSalute(int valore) {
+        salute = diminuisci(salute, valore);
+    }
+
+    @Override
+    public void riempiEnergia() {
+
+    }
+
+    @Override
+    public void riempiSalute() {
+
+    }
+
+    private static int diminuisci(int corrente, int valore) {
+        if (valore < 0) {
+            throw new IllegalArgumentException("Il valore non può essere negativo");
+        }
+        return Math.max(0, corrente - valore);
+    }
+}
