@@ -3,7 +3,7 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 public final class Guerriera implements Classe{
 
     private static final int FORZA_INIZIALE = 12;
-    private static final int FATTORE_AUMENTO_PROGRESSIVO = 3;
+    private static final int FATTORE_AUMENTO_FISSO = 3;
 
 
     @Override
@@ -23,6 +23,6 @@ public final class Guerriera implements Classe{
 
     @Override
     public int getForzaGuadagnata(int forzaAttuale) {
-        return FATTORE_AUMENTO_PROGRESSIVO;
+        return FATTORE_AUMENTO_FISSO;
     }
 }

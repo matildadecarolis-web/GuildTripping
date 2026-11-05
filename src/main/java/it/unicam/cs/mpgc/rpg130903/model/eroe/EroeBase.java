@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
 /**
  * Implementazione standard di {@link Eroe}.
  * <p>
- * Custodisce lo stato dell'eroe e ne garantisce i vincoli:
+ * Custodisce lo stato dell'eroe e ne garantisce i vincoli
  * Un eroe appena creato ha energia e salute al massimo e la forza iniziale della sua classe.
  * </p>
  */
@@ -71,6 +71,13 @@ public class EroeBase implements Eroe{
         return maxStat;
     }
 
+    /**
+     * Aumenta la forza della quantità stabilita dalla classe dell'eroe.
+     * Non consuma energia né oro: i costi appartengono all'attività di addestramento.
+     *
+     * @return la forza totale dopo l'allenamento
+     */
+
     @Override
     public int allenamento() {
         int guadagno = classe.getForzaGuadagnata(forza);
@@ -99,13 +106,13 @@ public class EroeBase implements Eroe{
     }
 
     @Override
-    public void riempiEnergia() {
-    energia = maxStat;
+    public void ripristinaEnergia() {
+        energia = maxStat;
     }
 
     @Override
-    public void riempiSalute() {
-    salute = maxStat;
+    public void ripristinaSalute() {
+        salute = maxStat;
     }
 
     /**

@@ -3,12 +3,11 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 /**
  * Il guadagno cala di un punto per ogni decina di forza, ma non scende mai sotto il minimo.
  */
-
 public final class Ladra implements Classe{
     private static final int FORZA_INIZIALE = 9;
     private static final int AUMENTO_MINIMO = 1;
     private static final int AUMENTO_MASSIMO = 4;
-    private static final int FATTORE_AUMENTO_PROGRESSIVO = 10;
+    private static final int FATTORE_DIMINUZIONE_PROGRESSIVO = 10;
 
 
     @Override
@@ -28,6 +27,6 @@ public final class Ladra implements Classe{
 
     @Override
     public int getForzaGuadagnata(int forzaAttuale) {
-        return Math.max(AUMENTO_MINIMO, AUMENTO_MASSIMO - forzaAttuale / FATTORE_AUMENTO_PROGRESSIVO);
+        return Math.max(AUMENTO_MINIMO, AUMENTO_MASSIMO - forzaAttuale / FATTORE_DIMINUZIONE_PROGRESSIVO);
     }
 }

@@ -3,7 +3,6 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 /**
  * Il guadagno cresce di un punto per ogni decina di forza.
  */
-
 public final class Mago implements Classe {
 
     private static final int FORZA_INIZIALE = 6;

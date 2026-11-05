@@ -16,6 +16,5 @@ public interface Classe {
      * @param forzaAttuale forza attuale dell'eroe
      * @return forza guadagnata (sempre positiva)
      */
-
     int getForzaGuadagnata(int forzaAttuale);
-    }
+}

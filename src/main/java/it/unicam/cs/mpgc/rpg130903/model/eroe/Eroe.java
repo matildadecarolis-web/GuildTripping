@@ -4,17 +4,10 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
 
 /**
  * Un eroe della gilda.
- * <p>
  * Espone lo stato dell'eroe e solo modifiche con un significato di gioco
- * (allenarsi, spendere energia, perdere salute, recuperare). I vincoli sulle
- * statistiche restano nell'implementazione, così nessuna classe esterna può
- * portarle fuori dall'intervallo valido.
- * </p>
- * <p>
- * Un eroe non conosce attività, turni o motore di gioco: decidere quando un eroe
- * si allena o recupera è responsabilità di altre classi.
- * </p>
-
+ * (allenarsi, spendere energia, perdere salute, recuperare).
+ * I vincoli sulle statistiche restano nell'implementazione.
+ * Un eroe non conosce attività.
  */
 public interface Eroe {
     String getNome();
@@ -33,7 +26,7 @@ public interface Eroe {
     void spendiEnergia(int valore);
     void perdiSalute(int valore);
 
-    void riempiEnergia();
-    void riempiSalute();
+    void ripristinaEnergia();
+    void ripristinaSalute();
 
 }

@@ -15,6 +15,6 @@ public class StatEnergia implements Stat{
 
     @Override
     public void riempi(Eroe eroe) {
-        eroe.riempiEnergia();
+        eroe.ripristinaEnergia();
     }
 }

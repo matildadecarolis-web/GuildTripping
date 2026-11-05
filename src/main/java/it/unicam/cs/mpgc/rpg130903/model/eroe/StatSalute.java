@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
 public class StatSalute implements Stat{
 
+    @Override
     public String getNome(){
         return "Salute";
     }
@@ -13,6 +14,6 @@ public class StatSalute implements Stat{
 
     @Override
     public void riempi(Eroe eroe) {
-        eroe.riempiSalute();
+        eroe.ripristinaSalute();
     }
 }
