@@ -24,7 +24,7 @@ public final class GildaAvventurieri implements Specializzazione {
 
     @Override
     public String getNome() {
-        return "GildaBase degli Avventurieri";
+        return "Gilda degli Avventurieri";
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * La gilda del giocatore: nome, specializzazione, eroi e oro.
- * L'oro non scende mai sotto zero e la squadra non può essere modificata dall'esterno.
+ * L'oro non scende mai sotto zero, non vengono accettati valori negativi e la squadra non può essere modificata dall'esterno.
  */
 public interface Gilda {
 

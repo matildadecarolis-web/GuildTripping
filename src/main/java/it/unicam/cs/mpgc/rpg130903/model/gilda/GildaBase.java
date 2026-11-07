@@ -64,6 +64,9 @@ public final class GildaBase implements Gilda {
         return oro >= costo;
     }
 
+    /**
+     * Viene chiamato dopo può permettersi, lancia l'eccezione se l'oro non basta.
+     */
     @Override
     public void spendi(int costo) {
         if (!puoPermettersi(costo)){
@@ -73,7 +76,9 @@ public final class GildaBase implements Gilda {
             oro -= costo;
         }
     }
-
+    /**
+     * Restituisce l'oro pagato.
+     */
     @Override
     public int pagaFinoAZero(int costo) {
         controllaNonNegativo(costo);
