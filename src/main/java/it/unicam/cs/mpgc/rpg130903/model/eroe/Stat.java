@@ -2,11 +2,8 @@ package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
 /**
  * Statistica ripristinabile di un eroe (energia o salute).
- * <p>
  * Permette alle attività di recupero e ai recuperi forzati di lavorare su "una statistica"
- * senza sapere quale. Aggiungere una nuova statistica (per esempio il morale) significa
- * scrivere una nuova implementazione, senza modificare chi la usa.
- * </p>
+ * senza sapere quale. Aggiungere una nuova statistica significa scrivere una nuova implementazione.
  */
 public interface Stat {
     String getNome();
@@ -17,7 +14,7 @@ public interface Stat {
      */
     int valore(Eroe eroe);
 
-    void riempi(Eroe eroe);
+    void ripristina(Eroe eroe);
 
     /**
      * Necessario per la missione critica

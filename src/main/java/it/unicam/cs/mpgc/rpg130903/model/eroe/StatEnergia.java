@@ -14,7 +14,7 @@ public class StatEnergia implements Stat{
     }
 
     @Override
-    public void riempi(Eroe eroe) {
+    public void ripristina(Eroe eroe) {
         eroe.ripristinaEnergia();
     }
 }

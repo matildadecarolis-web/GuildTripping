@@ -4,10 +4,8 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
 
 /**
  * Implementazione standard di {@link Eroe}.
- * <p>
- * Custodisce lo stato dell'eroe e ne garantisce i vincoli
+ * Custodisce lo stato dell'eroe e ne garantisce i vincoli.
  * Un eroe appena creato ha energia e salute al massimo e la forza iniziale della sua classe.
- * </p>
  */
 
 public class EroeBase implements Eroe{
@@ -117,7 +115,6 @@ public class EroeBase implements Eroe{
 
     /**
      * Sottrae una quantità da un valore senza scendere sotto zero.
-     *
      * @param corrente valore attuale
      * @param valore   quantità da sottrarre, non negativa
      * @return il nuovo valore, mai negativo
