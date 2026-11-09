@@ -8,7 +8,7 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
  * Un eroe appena creato ha energia e salute al massimo e la forza iniziale della sua classe.
  */
 
-public class EroeBase implements Eroe{
+public class EroeBase implements Eroe {
 
     private final String nome;
     private final Classe classe;
@@ -23,7 +23,7 @@ public class EroeBase implements Eroe{
             throw new IllegalArgumentException("Il nome non può essere vuoto");
         }
 
-        if ( classe == null) {
+        if (classe == null) {
             throw new IllegalArgumentException("La classe non può essere nulla");
         }
 
@@ -72,15 +72,12 @@ public class EroeBase implements Eroe{
     /**
      * Aumenta la forza della quantità stabilita dalla classe dell'eroe.
      * Non consuma energia né oro: i costi appartengono all'attività di addestramento.
-     *
-     * @return la forza totale dopo l'allenamento
      */
 
     @Override
-    public int allenamento() {
+    public void allenamento() {
         int guadagno = classe.getForzaGuadagnata(forza);
         forza += guadagno;
-        return forza;
     }
 
     @Override
@@ -115,6 +112,7 @@ public class EroeBase implements Eroe{
 
     /**
      * Sottrae una quantità da un valore senza scendere sotto zero.
+     *
      * @param corrente valore attuale
      * @param valore   quantità da sottrarre, non negativa
      * @return il nuovo valore, mai negativo

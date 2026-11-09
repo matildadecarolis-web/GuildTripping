@@ -10,14 +10,16 @@ import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 public interface Attivita {
 
     String getNome();
+
     String getDescrizione();
 
     /**
      * Controlla le regole specifiche dell'attività (energia, salute, oro).
+     *
      * @throws AttivitaNonPermessaException se le regole non sono rispettate,
-     * con un messaggio da mostrare al giocatore
+     *                                      con un messaggio da mostrare al giocatore
      */
-    void valida (Eroe eroe, Gilda gilda);
+    void valida(Eroe eroe, Gilda gilda) throws AttivitaNonPermessaException;
 
     /**
      * Chiamato dopo valida, applica gli effetti dell'attività.

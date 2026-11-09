@@ -15,7 +15,7 @@ public final class MissioneCritica {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Il nome non può essere vuoto");
         }
-        if (descrizione == null){
+        if (descrizione == null) {
             throw new IllegalArgumentException("La descrizione non può essere vuota");
         }
         if (difficolta <= 0) {

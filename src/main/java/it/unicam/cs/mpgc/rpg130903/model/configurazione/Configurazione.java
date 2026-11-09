@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130903.model.attivita;
+package it.unicam.cs.mpgc.rpg130903.model.configurazione;
 
 /**
  * Configurazione raggruppa le costanti del gioco evitando di spargerle per le varie classi.
@@ -15,12 +15,12 @@ public final class Configurazione {
 
     public static final int COSTO_ENERGIA_ADDESTRAMENTO = 25;
     public static final int COSTO_ORO_ADDESTRAMENTO = 10;
-    public static final int COSTO_SALUTE_MISSIONE = 30;
+    public static final int COSTO_SALUTE_MISSIONE = 20;
     public static final int GUADAGNO_ORO_MISSIONE = 25;
     public static final int COSTO_ORO_INFERMERIA = 15;
     public static final int COSTO_ORO_GIORNO_LIBERO = 10;
 
-    private Configurazione(){
+    private Configurazione() {
 
     }
 }

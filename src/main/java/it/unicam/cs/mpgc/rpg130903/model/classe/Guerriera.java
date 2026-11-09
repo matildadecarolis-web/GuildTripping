@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130903.model.classe;
 
-public final class Guerriera implements Classe{
+public final class Guerriera implements Classe {
 
     private static final int FORZA_INIZIALE = 12;
     private static final int FATTORE_AUMENTO_FISSO = 3;

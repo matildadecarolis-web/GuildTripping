@@ -1,9 +1,9 @@
 package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
-public class StatSalute implements Stat{
+public class StatSalute implements Stat {
 
     @Override
-    public String getNome(){
+    public String getNome() {
         return "Salute";
     }
 

@@ -3,7 +3,7 @@ package it.unicam.cs.mpgc.rpg130903.model.classe;
 /**
  * Il guadagno cala di un punto per ogni decina di forza, ma non scende mai sotto il minimo.
  */
-public final class Ladra implements Classe{
+public final class Ladra implements Classe {
     private static final int FORZA_INIZIALE = 9;
     private static final int AUMENTO_MINIMO = 1;
     private static final int AUMENTO_MASSIMO = 4;

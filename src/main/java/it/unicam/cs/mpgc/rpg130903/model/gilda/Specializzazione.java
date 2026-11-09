@@ -12,12 +12,14 @@ import java.util.List;
  */
 public interface Specializzazione {
     String getNome();
+
     String getDescrizione();
 
     /**
      * Crea una nuova squadra di tre eroi, con statistiche al massimo.
      */
     List<Eroe> creaSquadra(int maxStat);
+
     MissioneCritica getMissioneCritica();
 
 }

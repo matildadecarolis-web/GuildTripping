@@ -29,11 +29,11 @@ public final class Addestramento implements Attivita {
     @Override
     public void valida(Eroe eroe, Gilda gilda) throws AttivitaNonPermessaException {
         if (eroe.getEnergia() < this.costoEnergia) {
-            throw new AttivitaNonPermessaException(eroe.getNome() + " non ha abbastanza energia per allenarsi");
+            throw new AttivitaNonPermessaException(eroe.getNome() + " non ha abbastanza energia per addestrarsi");
         }
 
         if (!gilda.puoPermettersi(costoOro)) {
-            throw new AttivitaNonPermessaException("La gilda non ha abbastanza oro");
+            throw new AttivitaNonPermessaException("La gilda non ha abbastanza oro per l'addestramento");
         }
     }
 

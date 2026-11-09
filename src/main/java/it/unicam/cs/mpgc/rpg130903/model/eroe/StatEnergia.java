@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
-public class StatEnergia implements Stat{
+public class StatEnergia implements Stat {
 
 
     @Override

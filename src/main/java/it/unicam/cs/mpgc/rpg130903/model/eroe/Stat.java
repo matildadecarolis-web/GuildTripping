@@ -7,7 +7,7 @@ package it.unicam.cs.mpgc.rpg130903.model.eroe;
  * Aggiungere una nuova statistica significa scrivere una nuova implementazione
  * e aggiungere il valore in Eroe.
  */
-public interface Stat{
+public interface Stat {
     String getNome();
 
     /**

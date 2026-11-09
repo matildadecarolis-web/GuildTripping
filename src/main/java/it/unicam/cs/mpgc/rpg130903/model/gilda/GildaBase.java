@@ -16,7 +16,7 @@ public final class GildaBase implements Gilda {
 
     /**
      * @param eroi la squadra, non vuota; viene copiata, quindi modifiche successive
-     * alla lista originale non hanno effetto sulla gilda.
+     *             alla lista originale non hanno effetto sulla gilda.
      */
     public GildaBase(int oroIniziale, List<Eroe> eroi, Specializzazione specializzazione, String nome) {
         if (nome == null || nome.isBlank()) {
@@ -28,7 +28,7 @@ public final class GildaBase implements Gilda {
         if (eroi == null || eroi.isEmpty()) {
             throw new IllegalArgumentException("La lista eroi non può essere vuota");
         }
-        if (oroIniziale < 0){
+        if (oroIniziale < 0) {
             throw new IllegalArgumentException("L'oro non può essere negativo");
         }
 
@@ -69,13 +69,13 @@ public final class GildaBase implements Gilda {
      */
     @Override
     public void spendi(int costo) {
-        if (!puoPermettersi(costo)){
+        if (!puoPermettersi(costo)) {
             throw new IllegalStateException();
-        }
-        else {
+        } else {
             oro -= costo;
         }
     }
+
     /**
      * Restituisce l'oro pagato.
      */

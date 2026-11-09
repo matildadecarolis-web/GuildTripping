@@ -4,6 +4,10 @@ import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Stat;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 
+/**
+ * Attività che riporta al massimo una statistica dell'eroe, pagando oro.
+ * Infermeria (salute) e Giorno Libero (energia) sono due istanze di questa classe.
+ */
 public final class Recupero implements Attivita {
 
     private final int costoOro;
