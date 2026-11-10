@@ -7,7 +7,11 @@ import it.unicam.cs.mpgc.rpg130903.model.missione.MissioneCritica;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Partita {
+/**
+ * Non contiene regole, ma solo lo stato della partita (turno corrente, azioni rimaste ecc.)
+ * Le decisioni vengono prese dal motore di gioco.
+ */
+public final class Partita {
     private final Gilda gilda;
     private final MissioneCritica missione;
     private final int azioniPerTurno;
@@ -20,8 +24,8 @@ public class Partita {
         if (gilda == null || missione == null) {
             throw new IllegalArgumentException("Sia la gilda che la missione devono essere valide");
         }
-        if (azioniPerTurno < 0) {
-            throw new IllegalArgumentException("Il numero di missioni non può essere negativo");
+        if (azioniPerTurno <= 0) {
+            throw new IllegalArgumentException("Il numero di azioni non può essere negativo");
         }
         this.gilda = gilda;
         this.missione = missione;
@@ -30,7 +34,79 @@ public class Partita {
         this.turno = 1;
         this.azioniRimaste = azioniPerTurno;
         this.stato = StatoPartita.IN_CORSO;
+
     }
 
+    public Gilda getGilda() {
+        return gilda;
+    }
 
+    public MissioneCritica getMissione() {
+        return missione;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public int getAzioniRimaste() {
+        return azioniRimaste;
+    }
+
+    public StatoPartita getStato() {
+        return stato;
+    }
+
+    /**
+     * Controlla se ci sono azioni disponibli, se ci sono toglie un'azione.
+     */
+    public void consumaAzione() {
+        controllaInCorso();
+        if (azioniRimaste == 0) {
+            throw new IllegalStateException("Non ci sono più azioni in questo turno");
+        }
+        azioniRimaste--;
+    }
+
+    public void segnaInRecupero(Eroe eroe) {
+        if (eroe == null) {
+            throw new IllegalArgumentException("L'eroe non può essere nullo");
+        }
+        if (!eroiInRecupero.contains(eroe)) {
+            eroiInRecupero.add(eroe);
+        }
+    }
+
+    public boolean isInRecupero(Eroe eroe) {
+        return eroiInRecupero.contains(eroe);
+    }
+
+    /**
+     * Passa al turno successivo e resetta i valori.
+     * Non controlla il turno, quello lo fa il motore.
+     */
+    public void avanzaTurno() {
+        controllaInCorso();
+        turno++;
+        azioniRimaste = azioniPerTurno;
+        eroiInRecupero.clear();
+    }
+
+    /**
+     * Conclude la partita con l'esito della missione critica.
+     * Accetta solo VITTORIA o SCONFITTA.
+     */
+    public void concludi(StatoPartita esito) {
+        controllaInCorso();
+        if (esito == null || esito == StatoPartita.IN_CORSO) {
+            throw new IllegalArgumentException("Una partita si conclude solo con vittoria o sconfitta");
+        }
+        stato = esito;
+    }
+
+    private void controllaInCorso() {
+        if (stato != StatoPartita.IN_CORSO) {
+            throw new IllegalStateException("La partita è già conclusa");
+        }
+    }
 }
