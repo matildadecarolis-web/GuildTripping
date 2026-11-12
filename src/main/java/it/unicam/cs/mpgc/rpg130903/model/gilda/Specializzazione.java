@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * La specializzazione scelta a inizio partita (una per ora).
- * Determina la missione critica e la squadra iniziale.
+ * Determina l'evento finale e la squadra iniziale.
  * In futuro si possono fare più specializzazioni con altre implementazioni.
  */
 public interface Specializzazione {

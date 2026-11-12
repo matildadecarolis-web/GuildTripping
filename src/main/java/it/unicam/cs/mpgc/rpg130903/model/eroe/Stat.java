@@ -19,7 +19,7 @@ public interface Stat {
     void ripristina(Eroe eroe);
 
     /**
-     * Necessario per la missione critica
+     * Necessario per l'evento finale
      */
     default int mancante(Eroe eroe) {
         return eroe.getMaxStat() - valore(eroe);

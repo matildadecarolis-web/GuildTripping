@@ -22,7 +22,7 @@ public final class Partita {
 
     public Partita(int azioniPerTurno, EventoFinale evento, Gilda gilda) {
         if (gilda == null || evento == null) {
-            throw new IllegalArgumentException("Sia la gilda che la evento devono essere valide");
+            throw new IllegalArgumentException("Sia la gilda che l'evento devono essere valide");
         }
         if (azioniPerTurno <= 0) {
             throw new IllegalArgumentException("Il numero di azioni deve essere positivo");
@@ -93,7 +93,7 @@ public final class Partita {
     }
 
     /**
-     * Conclude la partita con l'esito della evento critica.
+     * Conclude la partita con l'esito dell'evento finale.
      * Accetta solo VITTORIA o SCONFITTA.
      */
     public void concludi(StatoPartita esito) {
