@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.model.partita;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
-import it.unicam.cs.mpgc.rpg130903.model.missione.MissioneCritica;
+import it.unicam.cs.mpgc.rpg130903.model.eventoFinale.EventoFinale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,19 +13,19 @@ import java.util.List;
  */
 public final class Partita {
     private final Gilda gilda;
-    private final MissioneCritica missione;
+    private final EventoFinale missione;
     private final int azioniPerTurno;
     private final List<Eroe> eroiInRecupero;
     private int turno;
     private int azioniRimaste;
     private StatoPartita stato;
 
-    public Partita(int azioniPerTurno, MissioneCritica missione, Gilda gilda) {
+    public Partita(int azioniPerTurno, EventoFinale missione, Gilda gilda) {
         if (gilda == null || missione == null) {
             throw new IllegalArgumentException("Sia la gilda che la missione devono essere valide");
         }
         if (azioniPerTurno <= 0) {
-            throw new IllegalArgumentException("Il numero di azioni non può essere negativo");
+            throw new IllegalArgumentException("Il numero di azioni deve essere positivo");
         }
         this.gilda = gilda;
         this.missione = missione;
@@ -41,7 +41,7 @@ public final class Partita {
         return gilda;
     }
 
-    public MissioneCritica getMissione() {
+    public EventoFinale getMissione() {
         return missione;
     }
 

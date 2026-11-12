@@ -1,17 +1,17 @@
-package it.unicam.cs.mpgc.rpg130903.model.missione;
+package it.unicam.cs.mpgc.rpg130903.model.eventoFinale;
 
 /**
  * Dati della missione critica che la gilda affronta al termine del turno di innesco.
  * Il turno è nella missione, così nel futuro si può cambiare la scadenza.
  */
-public final class MissioneCritica {
+public final class EventoFinale {
 
     private final String nome;
     private final String descrizione;
     private final int difficolta;
     private final int turnoInnesco;
 
-    public MissioneCritica(String nome, String descrizione, int difficolta, int turnoInnesco) {
+    public EventoFinale(String nome, String descrizione, int difficolta, int turnoInnesco) {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Il nome non può essere vuoto");
         }

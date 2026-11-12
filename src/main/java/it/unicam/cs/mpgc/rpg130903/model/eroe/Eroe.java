@@ -24,10 +24,6 @@ public interface Eroe {
 
     void allenamento();
 
-    boolean isEsausto();
-
-    boolean isMalato();
-
     void spendiEnergia(int valore);
 
     void perdiSalute(int valore);

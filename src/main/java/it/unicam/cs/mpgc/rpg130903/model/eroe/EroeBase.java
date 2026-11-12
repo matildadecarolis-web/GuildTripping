@@ -81,16 +81,6 @@ public class EroeBase implements Eroe {
     }
 
     @Override
-    public boolean isEsausto() {
-        return energia == 0;
-    }
-
-    @Override
-    public boolean isMalato() {
-        return salute == 0;
-    }
-
-    @Override
     public void spendiEnergia(int valore) {
         energia = diminuisci(energia, valore);
     }

@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Ladra;
 import it.unicam.cs.mpgc.rpg130903.model.classe.Mago;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.EroeBase;
-import it.unicam.cs.mpgc.rpg130903.model.missione.MissioneCritica;
+import it.unicam.cs.mpgc.rpg130903.model.eventoFinale.EventoFinale;
 
 import java.util.List;
 
@@ -16,7 +16,11 @@ public final class GildaAvventurieri implements Specializzazione {
 
     private static final int DIFFICOLTA_GOBLIN = 100;
     private static final int TURNO_INNESCO = 15;
-    private final MissioneCritica missioneGoblin = new MissioneCritica("Assalto dei Goblin", "I Goblin attaccheranno la città: la gilda dovrà schierare tutti i suoi eroi.", DIFFICOLTA_GOBLIN, TURNO_INNESCO);
+    private final EventoFinale missioneGoblin = new EventoFinale(
+            "Assalto dei Goblin",
+            "I Goblin attaccheranno la città: la gilda dovrà schierare tutti i suoi eroi.",
+            DIFFICOLTA_GOBLIN,
+            TURNO_INNESCO);
 
     @Override
     public String getNome() {
@@ -30,11 +34,14 @@ public final class GildaAvventurieri implements Specializzazione {
 
     @Override
     public List<Eroe> creaSquadra(int maxStat) {
-        return List.of(new EroeBase("Rebecca", new Guerriera(), maxStat), new EroeBase("Robin", new Ladra(), maxStat), new EroeBase("Merlino", new Mago(), maxStat));
+        return List.of(
+                new EroeBase("Rebecca", new Guerriera(), maxStat),
+                new EroeBase("Robin", new Ladra(), maxStat),
+                new EroeBase("Merlino", new Mago(), maxStat));
     }
 
     @Override
-    public MissioneCritica getMissioneCritica() {
+    public EventoFinale getMissioneCritica() {
         return missioneGoblin;
     }
 }

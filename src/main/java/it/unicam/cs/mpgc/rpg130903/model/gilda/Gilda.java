@@ -25,6 +25,7 @@ public interface Gilda {
 
     /**
      * Toglie l'oro per un'attività scelta dal giocatore.
+     * Se l'oro non basta lancia un'eccezione.
      */
     void spendi(int costo);
 

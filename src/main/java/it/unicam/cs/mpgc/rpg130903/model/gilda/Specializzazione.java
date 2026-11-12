@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg130903.model.gilda;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
-import it.unicam.cs.mpgc.rpg130903.model.missione.MissioneCritica;
+import it.unicam.cs.mpgc.rpg130903.model.eventoFinale.EventoFinale;
 
 import java.util.List;
 
@@ -20,6 +20,6 @@ public interface Specializzazione {
      */
     List<Eroe> creaSquadra(int maxStat);
 
-    MissioneCritica getMissioneCritica();
+    EventoFinale getMissioneCritica();
 
 }
