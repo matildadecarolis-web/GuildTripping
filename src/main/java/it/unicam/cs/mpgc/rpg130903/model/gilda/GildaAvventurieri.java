@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Ladra;
 import it.unicam.cs.mpgc.rpg130903.model.classe.Mago;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.EroeBase;
-import it.unicam.cs.mpgc.rpg130903.model.eventoFinale.EventoFinale;
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EventoFinale;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public final class GildaAvventurieri implements Specializzazione {
 
     private static final int DIFFICOLTA_GOBLIN = 100;
     private static final int TURNO_INNESCO = 15;
-    private final EventoFinale missioneGoblin = new EventoFinale(
+    private final EventoFinale eventoGoblin = new EventoFinale(
             "Assalto dei Goblin",
             "I Goblin attaccheranno la città: la gilda dovrà schierare tutti i suoi eroi.",
             DIFFICOLTA_GOBLIN,
@@ -41,7 +41,7 @@ public final class GildaAvventurieri implements Specializzazione {
     }
 
     @Override
-    public EventoFinale getMissioneCritica() {
-        return missioneGoblin;
+    public EventoFinale getEventoFinale() {
+        return eventoGoblin;
     }
 }

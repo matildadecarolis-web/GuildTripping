@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.model.partita;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
-import it.unicam.cs.mpgc.rpg130903.model.eventoFinale.EventoFinale;
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EventoFinale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,22 +13,22 @@ import java.util.List;
  */
 public final class Partita {
     private final Gilda gilda;
-    private final EventoFinale missione;
+    private final EventoFinale evento;
     private final int azioniPerTurno;
     private final List<Eroe> eroiInRecupero;
     private int turno;
     private int azioniRimaste;
     private StatoPartita stato;
 
-    public Partita(int azioniPerTurno, EventoFinale missione, Gilda gilda) {
-        if (gilda == null || missione == null) {
-            throw new IllegalArgumentException("Sia la gilda che la missione devono essere valide");
+    public Partita(int azioniPerTurno, EventoFinale evento, Gilda gilda) {
+        if (gilda == null || evento == null) {
+            throw new IllegalArgumentException("Sia la gilda che la evento devono essere valide");
         }
         if (azioniPerTurno <= 0) {
             throw new IllegalArgumentException("Il numero di azioni deve essere positivo");
         }
         this.gilda = gilda;
-        this.missione = missione;
+        this.evento = evento;
         this.azioniPerTurno = azioniPerTurno;
         this.eroiInRecupero = new ArrayList<>();
         this.turno = 1;
@@ -41,8 +41,8 @@ public final class Partita {
         return gilda;
     }
 
-    public EventoFinale getMissione() {
-        return missione;
+    public EventoFinale getEvento() {
+        return evento;
     }
 
     public int getTurno() {
@@ -93,7 +93,7 @@ public final class Partita {
     }
 
     /**
-     * Conclude la partita con l'esito della missione critica.
+     * Conclude la partita con l'esito della evento critica.
      * Accetta solo VITTORIA o SCONFITTA.
      */
     public void concludi(StatoPartita esito) {
