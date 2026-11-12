@@ -19,10 +19,10 @@ public interface Stat {
     void ripristina(Eroe eroe);
 
     /**
-     * Necessario per l'evento finale
+     * @return {@code true} se la statistica è sotto la metà del massimo
      */
-    default int mancante(Eroe eroe) {
-        return eroe.getMaxStat() - valore(eroe);
+    default boolean isSottoMeta(Eroe eroe) {
+        return valore(eroe) < eroe.getMaxStat() / 2;
     }
 
     default boolean isEsaurita(Eroe eroe) {
