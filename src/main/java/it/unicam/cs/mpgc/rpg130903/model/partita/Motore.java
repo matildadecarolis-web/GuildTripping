@@ -5,6 +5,8 @@ import it.unicam.cs.mpgc.rpg130903.model.attivita.AttivitaNonPermessaException;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.Recupero;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
+import it.unicam.cs.mpgc.rpg130903.model.imprevisto.GestoreImprevisti;
+import it.unicam.cs.mpgc.rpg130903.model.imprevisto.Imprevisto;
 
 import java.util.List;
 
@@ -19,8 +21,11 @@ public class Motore {
     private final List<Recupero> recuperi;
     private final CalcoloEsito calcolo;
     private EsitoEvento esito;
+    private final GestoreImprevisti imprevisti;
+    private Imprevisto ultimoImprevisto;
 
-    public Motore(Partita partita, List<Attivita> attivita, List<Recupero> recuperi, CalcoloEsito calcolo) {
+    public Motore(Partita partita, List<Attivita> attivita, List<Recupero> recuperi,
+                  CalcoloEsito calcolo, GestoreImprevisti imprevisti) {
         if (partita == null) {
             throw new IllegalArgumentException("La partita non può essere nulla");
         }
@@ -33,10 +38,14 @@ public class Motore {
         if (calcolo == null) {
             throw new IllegalArgumentException("Il calcolo dell'esito non può essere nullo");
         }
+        if (imprevisti == null) {
+            throw new IllegalArgumentException("Il gestore degli imprevisti non può essere nullo");
+        }
         this.partita = partita;
         this.attivita = List.copyOf(attivita);
         this.recuperi = List.copyOf(recuperi);
         this.calcolo = calcolo;
+        this.imprevisti = imprevisti;
     }
 
     public List<Attivita> getAttivita() {
@@ -48,6 +57,14 @@ public class Motore {
      */
     public EsitoEvento getEsito() {
         return esito;
+    }
+
+    /**
+     * @return l'imprevisto capitato all'inizio del turno corrente,
+     * oppure {@code null} se non ne è capitato nessuno
+     */
+    public Imprevisto getUltimoImprevisto() {
+        return ultimoImprevisto;
     }
 
     /**
@@ -86,7 +103,7 @@ public class Motore {
 
     /**
      * Applica il recupero forzato a ogni eroe con una statistica a zero e lo segna
-     * in recupero per tutto il turno.
+     * in recupero per tutto il turno. Poi l'eventuale imprevisto.
      */
     private void iniziaTurno() {
         Gilda gilda = partita.getGilda();
@@ -101,10 +118,11 @@ public class Motore {
                 }
             }
         }
+        ultimoImprevisto = imprevisti.applicaImprevisto(gilda);
     }
 
     /**
-     * Chiude il turno corrente.
+     * Chiude il turno corrente. Termina la partita se il turno finale lo risolve.
      */
     public void terminaTurno() {
         controllaInCorso();
