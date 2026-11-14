@@ -19,3 +19,13 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = "it.unicam.cs.mpgc.rpg130903.Main"
+}
