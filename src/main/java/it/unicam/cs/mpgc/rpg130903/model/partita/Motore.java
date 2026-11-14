@@ -4,6 +4,8 @@ import it.unicam.cs.mpgc.rpg130903.model.attivita.Attivita;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.AttivitaNonPermessaException;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.Recupero;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.CalcoloEsito;
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EsitoEvento;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 
 import java.util.List;
@@ -17,8 +19,10 @@ public class Motore {
     private final Partita partita;
     private final List<Attivita> attivita;
     private final List<Recupero> recuperi;
+    private final CalcoloEsito calcolo;
+    private EsitoEvento esito;
 
-    public Motore(Partita partita, List<Attivita> attivita, List<Recupero> recuperi) {
+    public Motore(Partita partita, List<Attivita> attivita, List<Recupero> recuperi, CalcoloEsito calcolo) {
         if (partita == null) {
             throw new IllegalArgumentException("La partita non può essere nulla");
         }
@@ -28,13 +32,24 @@ public class Motore {
         if (recuperi == null || recuperi.isEmpty()) {
             throw new IllegalArgumentException("I recuperi non possono essere nulli o vuoti");
         }
+        if (calcolo == null) {
+            throw new IllegalArgumentException("Il calcolo dell'esito non può essere nullo");
+        }
         this.partita = partita;
         this.attivita = List.copyOf(attivita);
         this.recuperi = List.copyOf(recuperi);
+        this.calcolo = calcolo;
     }
 
     public List<Attivita> getAttivita() {
         return attivita;
+    }
+
+    /**
+     * @return l'esito dell'evento finale, oppure {@code null} se la partita è ancora in corso
+     */
+    public EsitoEvento getEsito() {
+        return esito;
     }
 
     /**
@@ -53,7 +68,7 @@ public class Motore {
         if (!gilda.getEroi().contains(eroe)) {
             throw new IllegalArgumentException("L’eroe non appartiene alla gilda");
         }
-        if (attivita == null) {
+        if (scelta == null) {
             throw new IllegalArgumentException("L'attività non può essere nulla");
         }
         if (partita.getAzioniRimaste() == 0) {
@@ -96,9 +111,22 @@ public class Motore {
     public void terminaTurno() {
         controllaInCorso();
         if (partita.getTurno() == partita.getEvento().getTurnoInnesco()) {
+            risolviEvento();
+            return;
+        }
+        partita.avanzaTurno();
+        iniziaTurno();
+    }
+
+    /**
+     * Calcola l'esito dell'evento finale e conclude la partita con vittoria o sconfitta.
+     */
+    private void risolviEvento() {
+        esito = calcolo.calcola(partita.getGilda(), partita.getEvento());
+        if (esito.isVittoria()) {
+            partita.concludi(StatoPartita.VITTORIA);
         } else {
-            partita.avanzaTurno();
-            iniziaTurno();
+            partita.concludi(StatoPartita.SCONFITTA);
         }
     }
 
