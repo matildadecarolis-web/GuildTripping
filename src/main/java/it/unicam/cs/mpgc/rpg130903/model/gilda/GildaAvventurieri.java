@@ -14,7 +14,7 @@ import java.util.List;
  */
 public final class GildaAvventurieri implements Specializzazione {
 
-    private static final int DIFFICOLTA_GOBLIN = 100;
+    private static final int DIFFICOLTA_GOBLIN = 150;
     private static final int TURNO_INNESCO = 15;
     private final EventoFinale eventoGoblin = new EventoFinale(
             "Assalto dei Goblin",
