@@ -1,5 +1,6 @@
-package it.unicam.cs.mpgc.rpg130903.model.eventofinale;
+package it.unicam.cs.mpgc.rpg130903.model.partita;
 
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EventoFinale;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 
 /**

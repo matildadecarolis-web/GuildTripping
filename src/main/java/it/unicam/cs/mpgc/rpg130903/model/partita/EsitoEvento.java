@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130903.model.eventofinale;
+package it.unicam.cs.mpgc.rpg130903.model.partita;
 
 public final class EsitoEvento {
 

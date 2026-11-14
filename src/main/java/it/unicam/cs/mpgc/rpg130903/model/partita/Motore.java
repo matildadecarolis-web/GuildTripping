@@ -4,8 +4,6 @@ import it.unicam.cs.mpgc.rpg130903.model.attivita.Attivita;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.AttivitaNonPermessaException;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.Recupero;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
-import it.unicam.cs.mpgc.rpg130903.model.eventofinale.CalcoloEsito;
-import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EsitoEvento;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 
 import java.util.List;
