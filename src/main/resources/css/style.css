@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: "Georgia";
+    -fx-background-color: #f3ead8;
+}
+
+.label {
+    -fx-text-fill: #3b2f2f;
+}
+
+.titolo {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a3e1b;
+}
+
+.stato-turno {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.scheda-eroe {
+    -fx-background-color: #fffaf0;
+    -fx-border-color: #c8a97e;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+}
+
+.nome-eroe {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a3e1b;
+}
+
+.pulsante-attivita {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 7px;
+    -fx-cursor: hand;
+}
+
+.attivita-0 { -fx-background-color: #8b5a2b; }
+.attivita-0:hover { -fx-background-color: #6f4621; }
+
+.attivita-1 { -fx-background-color: #a23b2a; }
+.attivita-1:hover { -fx-background-color: #822e21; }
+
+.attivita-2 { -fx-background-color: #4f7942; }
+.attivita-2:hover { -fx-background-color: #3e6034; }
+
+.attivita-3 { -fx-background-color: #3e6d8e; }
+.attivita-3:hover { -fx-background-color: #30566f; }
+
+.pulsante-principale {
+    -fx-background-color: #c9a227;
+    -fx-text-fill: #2b2118;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 24px;
+    -fx-cursor: hand;
+}
+.pulsante-principale:hover { -fx-background-color: #b08d1e; }
+
+.text-field {
+    -fx-background-color: #fffaf0;
+    -fx-border-color: #c8a97e;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.tooltip {
+    -fx-background-color: #3b2f2f;
+    -fx-text-fill: #f3ead8;
+    -fx-font-size: 12px;
+}
+
+.messaggio-errore {
+    -fx-text-fill: #a23b2a;
+}
