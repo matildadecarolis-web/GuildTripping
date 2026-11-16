@@ -116,6 +116,9 @@ public final class Motore {
         if (!gilda.getEroi().contains(eroe)) {
             throw new IllegalArgumentException("L’eroe non appartiene alla gilda");
         }
+        if (eroe == null) {
+            throw new IllegalArgumentException("L’eroe non può essere nullo");
+        }
         if (scelta == null) {
             throw new IllegalArgumentException("L'attività non può essere nulla");
         }
@@ -140,6 +143,7 @@ public final class Motore {
      */
     private void iniziaTurno() {
         Gilda gilda = partita.getGilda();
+        ultimoImprevisto = imprevisti.applicaImprevisto(gilda);
         List<Eroe> eroi = gilda.getEroi();
         for (int i = 0; i < eroi.size(); i++) {
             Eroe eroe = eroi.get(i);
@@ -151,7 +155,6 @@ public final class Motore {
                 }
             }
         }
-        ultimoImprevisto = imprevisti.applicaImprevisto(gilda);
     }
 
     /**
