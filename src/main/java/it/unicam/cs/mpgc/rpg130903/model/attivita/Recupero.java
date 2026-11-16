@@ -13,17 +13,13 @@ public final class Recupero implements Attivita {
     private final int costoOro;
     private final Stat stat;
     private final String nome;
-    private final String descrizione;
 
-    public Recupero(Stat stat, int costoOro, String nome, String descrizione) {
+    public Recupero(Stat stat, int costoOro, String nome) {
         if (costoOro < 0) {
             throw new IllegalArgumentException("Il costo non può essere negativo");
         }
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Il nome non può rimanere vuoto");
-        }
-        if (descrizione == null) {
-            throw new IllegalArgumentException("La descrizione non può rimanere vuota");
         }
         if (stat == null) {
             throw new IllegalArgumentException("La statistica non può essere nulla");
@@ -31,9 +27,7 @@ public final class Recupero implements Attivita {
         this.stat = stat;
         this.costoOro = costoOro;
         this.nome = nome;
-        this.descrizione = descrizione;
     }
-
 
     public Stat getStat() {
         return stat;
@@ -46,7 +40,7 @@ public final class Recupero implements Attivita {
 
     @Override
     public String getDescrizione() {
-        return descrizione;
+        return "+ " + stat.getNome().toLowerCase() + " al massimo\n- " + costoOro + " oro";
     }
 
     @Override

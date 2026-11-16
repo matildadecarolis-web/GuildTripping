@@ -34,12 +34,34 @@
     -fx-text-fill: #5a3e1b;
 }
 
+.descrizione-classe {
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+    -fx-text-fill: #6b5a48;
+}
+
+.prossimo-addestramento {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8b5a2b;
+}
+
 .pulsante-attivita {
+    -fx-background-radius: 6px;
+    -fx-padding: 6px 8px;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+.titolo-attivita {
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 7px;
-    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.effetti-attivita {
+    -fx-text-fill: #f8f1e4;
+    -fx-font-size: 11px;
 }
 
 .attivita-0 { -fx-background-color: #8b5a2b; }
@@ -70,12 +92,6 @@
     -fx-border-color: #c8a97e;
     -fx-border-radius: 6px;
     -fx-background-radius: 6px;
-}
-
-.tooltip {
-    -fx-background-color: #3b2f2f;
-    -fx-text-fill: #f3ead8;
-    -fx-font-size: 12px;
 }
 
 .messaggio-errore {

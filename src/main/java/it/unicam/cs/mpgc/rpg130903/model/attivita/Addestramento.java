@@ -23,7 +23,7 @@ public final class Addestramento implements Attivita {
 
     @Override
     public String getDescrizione() {
-        return "L'eroe si allena: aumenta la forza, ma consuma energia e oro.";
+        return "+ forza\n- " + costoEnergia + " energia, - " + costoOro + " oro";
     }
 
     @Override

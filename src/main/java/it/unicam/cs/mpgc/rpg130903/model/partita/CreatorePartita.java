@@ -46,10 +46,8 @@ public final class CreatorePartita {
         List<Eroe> squadra = specializzazione.creaSquadra(Configurazione.MAX_STAT);
         Gilda gilda = new GildaBase(Configurazione.ORO_INIZIALE, squadra, specializzazione, nomeGilda);
 
-        Recupero infermeria = new Recupero(new StatSalute(), Configurazione.COSTO_ORO_INFERMERIA,
-                "Infermeria", "L'eroe si cura: la salute torna al massimo.");
-        Recupero giornoLibero = new Recupero(new StatEnergia(), Configurazione.COSTO_ORO_GIORNO_LIBERO,
-                "Giorno Libero", "L'eroe riposa: l'energia torna al massimo.");
+        Recupero infermeria = new Recupero(new StatSalute(), Configurazione.COSTO_ORO_INFERMERIA, "Infermeria");
+        Recupero giornoLibero = new Recupero(new StatEnergia(), Configurazione.COSTO_ORO_GIORNO_LIBERO, "Giorno Libero");
 
         List<Attivita> attivita = List.of(
                 new Addestramento(Configurazione.COSTO_ENERGIA_ADDESTRAMENTO, Configurazione.COSTO_ORO_ADDESTRAMENTO),

@@ -23,7 +23,7 @@ public final class Missione implements Attivita {
 
     @Override
     public String getDescrizione() {
-        return "L'eroe va in missione: la gilda guadagna oro, ma l'eroe perde salute.";
+        return "+ " + guadagnoOro + " oro\n- " + costoSalute + " salute";
     }
 
     @Override
