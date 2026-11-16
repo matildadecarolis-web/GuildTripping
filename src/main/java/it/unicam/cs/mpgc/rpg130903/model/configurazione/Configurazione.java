@@ -15,7 +15,7 @@ public final class Configurazione {
     public static final int ORO_RUBATO_BANDITI = 20;
     public static final int ORO_DONATO_ANONIMO = 30;
     public static final int SALUTE_PERSA_EPIDEMIA = 20;
-    public static final int PROBABILITA_IMPREVISTO = 20; //percentuale
+    public static final int PROBABILITA_IMPREVISTO = 35; //percentuale
 
     public static final int COSTO_ENERGIA_ADDESTRAMENTO = 25;
     public static final int COSTO_ORO_ADDESTRAMENTO = 10;

@@ -76,17 +76,37 @@
     -fx-font-size: 11px;
 }
 
-.attivita-0 { -fx-background-color: #8b5a2b; }
-.attivita-0:hover { -fx-background-color: #6f4621; }
+.attivita-0 {
+    -fx-background-color: #8b5a2b;
+}
 
-.attivita-1 { -fx-background-color: #a23b2a; }
-.attivita-1:hover { -fx-background-color: #822e21; }
+.attivita-0:hover {
+    -fx-background-color: #6f4621;
+}
 
-.attivita-2 { -fx-background-color: #4f7942; }
-.attivita-2:hover { -fx-background-color: #3e6034; }
+.attivita-1 {
+    -fx-background-color: #a23b2a;
+}
 
-.attivita-3 { -fx-background-color: #3e6d8e; }
-.attivita-3:hover { -fx-background-color: #30566f; }
+.attivita-1:hover {
+    -fx-background-color: #822e21;
+}
+
+.attivita-2 {
+    -fx-background-color: #4f7942;
+}
+
+.attivita-2:hover {
+    -fx-background-color: #3e6034;
+}
+
+.attivita-3 {
+    -fx-background-color: #3e6d8e;
+}
+
+.attivita-3:hover {
+    -fx-background-color: #30566f;
+}
 
 .pulsante-principale {
     -fx-background-color: #c9a227;
@@ -97,7 +117,10 @@
     -fx-padding: 8px 24px;
     -fx-cursor: hand;
 }
-.pulsante-principale:hover { -fx-background-color: #b08d1e; }
+
+.pulsante-principale:hover {
+    -fx-background-color: #b08d1e;
+}
 
 .text-field {
     -fx-background-color: #fffaf0;
@@ -108,4 +131,55 @@
 
 .messaggio-errore {
     -fx-text-fill: #a23b2a;
+}
+
+.titolo-vittoria {
+    -fx-font-family: "Palatino Linotype";
+    -fx-font-size: 72px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4f7942;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 8, 0, 0, 3);
+}
+
+.titolo-sconfitta {
+    -fx-font-family: "Palatino Linotype";
+    -fx-font-size: 72px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a23b2a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 8, 0, 0, 3);
+}
+
+.racconto-finale {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-text-fill: #5a3e1b;
+}
+
+.riepilogo {
+    -fx-background-color: #fffaf0;
+    -fx-border-color: #c8a97e;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+}
+
+.voce-riepilogo {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+}
+
+.punteggio-finale {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a3e1b;
+}
+
+.regola-evento {
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+    -fx-text-fill: #8b5a2b;
+    -fx-text-alignment: center;
 }

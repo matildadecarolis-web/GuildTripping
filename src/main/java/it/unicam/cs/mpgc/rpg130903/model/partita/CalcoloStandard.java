@@ -53,6 +53,19 @@ public final class CalcoloStandard implements CalcoloEsito {
         return new EsitoEvento(forza, dado, evento.getDifficolta());
     }
 
+    @Override
+    public String getDescrizione() {
+        String nomi = "";
+        for (int i = 0; i < statistiche.size(); i++) {
+            if (i > 0) {
+                nomi = nomi + " o ";
+            }
+            nomi = nomi + statistiche.get(i).getNome().toLowerCase();
+        }
+        return "All'evento ogni eroe combatte con tutta la sua forza, con metà se " + nomi
+                + " scende sotto metà, e non combatte se arriva a zero.";
+    }
+
     private boolean haStatisticaAZero(Eroe eroe) {
         for (int i = 0; i < statistiche.size(); i++) {
             if (statistiche.get(i).isEsaurita(eroe)) {

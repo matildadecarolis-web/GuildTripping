@@ -95,4 +95,8 @@ public final class ControllerGioco {
     public boolean isInRecupero(Eroe eroe) {
         return motore.isInRecupero(eroe);
     }
+
+    public String getRegolaEvento() {
+        return motore.getRegolaEvento();
+    }
 }

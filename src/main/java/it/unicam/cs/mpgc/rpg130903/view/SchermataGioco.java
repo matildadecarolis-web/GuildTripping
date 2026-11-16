@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -45,9 +46,12 @@ public final class SchermataGioco extends BorderPane {
         EventoFinale evento = controller.getEvento();
         Label infoEvento = new Label(evento.getNome() + " al turno " + evento.getTurnoInnesco()
                 + " (difficoltà " + evento.getDifficolta() + ")");
+        Label regolaEvento = new Label(controller.getRegolaEvento());
+        regolaEvento.getStyleClass().add("regola-evento");
+        regolaEvento.setWrapText(true);
         stato = new Label();
         stato.getStyleClass().add("stato-turno");
-        VBox alto = new VBox(5, stato, infoEvento);
+        VBox alto = new VBox(5, stato, infoEvento, regolaEvento);
         alto.setAlignment(Pos.CENTER);
         alto.setPadding(new Insets(0, 0, 15, 0));
 
@@ -111,6 +115,8 @@ public final class SchermataGioco extends BorderPane {
         avviso.setHeaderText("Turno " + controller.getTurno());
         avviso.setContentText(testo.toString());
         avviso.getDialogPane().getStylesheets().addAll(getScene().getStylesheets());
+        avviso.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        avviso.getDialogPane().setPrefWidth(420);
         avviso.showAndWait();
     }
 

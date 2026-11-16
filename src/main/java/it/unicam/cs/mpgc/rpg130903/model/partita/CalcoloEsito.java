@@ -9,4 +9,9 @@ import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
  */
 public interface CalcoloEsito {
     EsitoEvento calcola(Gilda gilda, EventoFinale evento);
+
+    /**
+     * @return la regola di calcolo spiegata al giocatore
+     */
+    String getDescrizione();
 }

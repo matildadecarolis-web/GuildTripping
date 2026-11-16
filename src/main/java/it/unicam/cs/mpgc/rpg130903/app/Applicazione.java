@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.app;
 
 import it.unicam.cs.mpgc.rpg130903.controller.ControllerGioco;
 import it.unicam.cs.mpgc.rpg130903.model.partita.CreatorePartita;
-import it.unicam.cs.mpgc.rpg130903.model.partita.EsitoEvento;
+import it.unicam.cs.mpgc.rpg130903.view.SchermataFinale;
 import it.unicam.cs.mpgc.rpg130903.view.SchermataGioco;
 import it.unicam.cs.mpgc.rpg130903.view.SchermataIniziale;
 import javafx.application.Application;
@@ -55,8 +55,6 @@ public class Applicazione extends Application {
     }
 
     private void mostraSchermataFinale() {
-        EsitoEvento esito = controller.getEsito();
-        scena.setRoot(new Label((esito.isVittoria() ? "Vittoria" : "Sconfitta")
-                + " con punteggio " + esito.getPunteggio() + "/" + esito.getDifficolta()));
+        scena.setRoot(new SchermataFinale(controller, this::mostraSchermataIniziale));
     }
 }

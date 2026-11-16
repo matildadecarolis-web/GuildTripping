@@ -84,6 +84,10 @@ public final class Motore {
         return partita.getEvento();
     }
 
+    public String getRegolaEvento() {
+        return calcolo.getDescrizione();
+    }
+
     /**
      * @return l'imprevisto capitato all'inizio del turno corrente,
      * oppure {@code null} se non ne è capitato nessuno
