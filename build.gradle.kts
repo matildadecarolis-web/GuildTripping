@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("application")
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 group = "it.unicam.cs.mpgc.rpg130903"
@@ -26,6 +27,11 @@ java {
     }
 }
 
+javafx {
+    version = "25.0.3"
+    modules = listOf("javafx.controls")
+}
+
 application {
-    mainClass = "it.unicam.cs.mpgc.rpg130903.Main"
+    mainClass = "it.unicam.cs.mpgc.rpg130903.app.Applicazione"
 }

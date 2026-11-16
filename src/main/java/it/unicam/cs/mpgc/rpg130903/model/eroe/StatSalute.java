@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130903.model.eroe;
 
-public class StatSalute implements Stat {
+public final class StatSalute implements Stat {
 
     @Override
     public String getNome() {

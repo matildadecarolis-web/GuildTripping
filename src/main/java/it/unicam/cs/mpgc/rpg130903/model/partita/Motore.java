@@ -4,6 +4,7 @@ import it.unicam.cs.mpgc.rpg130903.model.attivita.Attivita;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.AttivitaNonPermessaException;
 import it.unicam.cs.mpgc.rpg130903.model.attivita.Recupero;
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
+import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EventoFinale;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 import it.unicam.cs.mpgc.rpg130903.model.imprevisto.GestoreImprevisti;
 import it.unicam.cs.mpgc.rpg130903.model.imprevisto.Imprevisto;
@@ -14,15 +15,15 @@ import java.util.List;
  * Applica le regole del turno, lo stato della partita invece si trova in Partita.
  * Il motore non crea gli oggetti, li riceve dal costruttore.
  */
-public class Motore {
+public final class Motore {
 
     private final Partita partita;
     private final List<Attivita> attivita;
     private final List<Recupero> recuperi;
     private final CalcoloEsito calcolo;
-    private EsitoEvento esito;
     private final GestoreImprevisti imprevisti;
     private Imprevisto ultimoImprevisto;
+    private EsitoEvento esito;
 
     public Motore(Partita partita, List<Attivita> attivita, List<Recupero> recuperi,
                   CalcoloEsito calcolo, GestoreImprevisti imprevisti) {
@@ -59,12 +60,44 @@ public class Motore {
         return esito;
     }
 
+    public int getTurno() {
+        return partita.getTurno();
+    }
+
+    public int getAzioniRimaste() {
+        return partita.getAzioniRimaste();
+    }
+
+    public StatoPartita getStato() {
+        return partita.getStato();
+    }
+
+    public int getOro() {
+        return partita.getGilda().getOro();
+    }
+
+    public List<Eroe> getEroi() {
+        return partita.getGilda().getEroi();
+    }
+
+    public EventoFinale getEvento() {
+        return partita.getEvento();
+    }
+
     /**
      * @return l'imprevisto capitato all'inizio del turno corrente,
      * oppure {@code null} se non ne è capitato nessuno
      */
     public Imprevisto getUltimoImprevisto() {
         return ultimoImprevisto;
+    }
+
+    /**
+     * @return {@code true} se l'eroe può svolgere un'attività in questo turno:
+     *         non è in recupero forzato e non ha statistiche a zero
+     */
+    public boolean isDisponibile(Eroe eroe) {
+        return !partita.isInRecupero(eroe) && !haStatisticaAZero(eroe);
     }
 
     /**

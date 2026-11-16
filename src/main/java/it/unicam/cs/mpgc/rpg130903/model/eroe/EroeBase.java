@@ -8,7 +8,7 @@ import it.unicam.cs.mpgc.rpg130903.model.classe.Classe;
  * Un eroe appena creato ha energia e salute al massimo e la forza iniziale della sua classe.
  */
 
-public class EroeBase implements Eroe {
+public final class EroeBase implements Eroe {
 
     private final String nome;
     private final Classe classe;

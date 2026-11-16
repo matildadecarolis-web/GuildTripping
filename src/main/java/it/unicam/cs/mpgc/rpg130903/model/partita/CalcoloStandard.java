@@ -15,7 +15,7 @@ import java.util.Random;
  * e zero se almeno una è a zero. Alla somma si aggiunge un d20;
  * si vince se il punteggio è maggiore o uguale alla difficoltà.
  */
-public class CalcoloStandard implements CalcoloEsito {
+public final class CalcoloStandard implements CalcoloEsito {
 
     private static final int FACCE_DADO = 20;
 
