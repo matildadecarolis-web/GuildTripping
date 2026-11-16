@@ -46,6 +46,18 @@
     -fx-text-fill: #8b5a2b;
 }
 
+.stato-disponibile {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4f7942;
+}
+
+.stato-non-disponibile {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a23b2a;
+}
+
 .pulsante-attivita {
     -fx-background-radius: 6px;
     -fx-padding: 6px 8px;

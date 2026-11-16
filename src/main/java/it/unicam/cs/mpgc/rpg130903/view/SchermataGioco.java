@@ -84,18 +84,32 @@ public final class SchermataGioco extends BorderPane {
         }
         messaggio.setText("");
         aggiorna();
-        mostraImprevisto();
+        mostraInizioTurno();
     }
 
-    private void mostraImprevisto() {
+    /**
+     * Annuncia con un popup cosa è successo all'inizio del nuovo turno:
+     * gli eroi in recupero forzato e l'eventuale imprevisto.
+     */
+    private void mostraInizioTurno() {
+        StringBuilder testo = new StringBuilder();
+        for (Eroe eroe : controller.getEroi()) {
+            if (controller.isInRecupero(eroe)) {
+                testo.append(eroe.getNome())
+                        .append(" è in recupero forzato: salta questo turno e la gilda paga il recupero.\n");
+            }
+        }
         Imprevisto ultimo = controller.getUltimoImprevisto();
-        if (ultimo == null) {
+        if (ultimo != null) {
+            testo.append("\nImprevisto – ").append(ultimo.getNome()).append(": ").append(ultimo.getDescrizione());
+        }
+        if (testo.isEmpty()) {
             return;
         }
         Alert avviso = new Alert(Alert.AlertType.INFORMATION);
-        avviso.setTitle("Imprevisto");
-        avviso.setHeaderText(ultimo.getNome());
-        avviso.setContentText(ultimo.getDescrizione());
+        avviso.setTitle("Inizio turno");
+        avviso.setHeaderText("Turno " + controller.getTurno());
+        avviso.setContentText(testo.toString());
         avviso.getDialogPane().getStylesheets().addAll(getScene().getStylesheets());
         avviso.showAndWait();
     }
@@ -124,6 +138,12 @@ public final class SchermataGioco extends BorderPane {
         Label crescita = new Label(eroe.getClasse().getDescrizione());
         crescita.getStyleClass().add("descrizione-classe");
         crescita.setWrapText(true);
+
+        boolean disponibile = controller.isDisponibile(eroe);
+        Label stato = new Label("Stato: " + testoDisponibilita(eroe, disponibile));
+        stato.getStyleClass().add(disponibile ? "stato-disponibile" : "stato-non-disponibile");
+        stato.setWrapText(true);
+
         Label prossimo = new Label("Addestramento: +"
                 + eroe.getClasse().getForzaGuadagnata(eroe.getForza()) + " forza");
         prossimo.getStyleClass().add("prossimo-addestramento");
@@ -131,10 +151,7 @@ public final class SchermataGioco extends BorderPane {
         Label energia = new Label("Energia: " + eroe.getEnergia() + "/" + eroe.getMaxStat());
         Label salute = new Label("Salute: " + eroe.getSalute() + "/" + eroe.getMaxStat());
 
-        boolean disponibile = controller.isDisponibile(eroe);
-        Label disponibilita = new Label(disponibile ? "Disponibile" : "Non disponibile in questo turno");
-
-        VBox scheda = new VBox(6, nome, crescita, prossimo, forza, energia, salute, disponibilita);
+        VBox scheda = new VBox(6, nome, crescita, stato, prossimo, forza, energia, salute);
         List<Attivita> elenco = controller.getAttivita();
         for (int i = 0; i < elenco.size(); i++) {
             Attivita attivita = elenco.get(i);
@@ -146,6 +163,16 @@ public final class SchermataGioco extends BorderPane {
         scheda.getStyleClass().add("scheda-eroe");
         scheda.setPrefWidth(230);
         return scheda;
+    }
+
+    private String testoDisponibilita(Eroe eroe, boolean disponibile) {
+        if (disponibile) {
+            return "Disponibile";
+        }
+        if (controller.isInRecupero(eroe)) {
+            return "In recupero forzato!\nsalta questo turno";
+        }
+        return "Stremato!\nIl prossimo turno sarà in recupero";
     }
 
     private Button creaPulsanteAttivita(Attivita attivita, int posizione) {

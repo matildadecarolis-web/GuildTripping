@@ -100,6 +100,10 @@ public final class Motore {
         return !partita.isInRecupero(eroe) && !haStatisticaAZero(eroe);
     }
 
+    public boolean isInRecupero(Eroe eroe) {
+        return partita.isInRecupero(eroe);
+    }
+
     /**
      * Fa eseguire un'attività a un eroe, se le regole lo permettono, e consuma un'azione.
      * L'attività è rifiutata se non restano azioni, se l'eroe è in recupero forzato

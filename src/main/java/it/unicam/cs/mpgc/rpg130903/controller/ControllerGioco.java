@@ -91,4 +91,8 @@ public final class ControllerGioco {
     public boolean isDisponibile(Eroe eroe) {
         return motore.isDisponibile(eroe);
     }
+
+    public boolean isInRecupero(Eroe eroe) {
+        return motore.isInRecupero(eroe);
+    }
 }
