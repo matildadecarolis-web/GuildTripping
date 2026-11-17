@@ -1,8 +1,8 @@
 package it.unicam.cs.mpgc.rpg130903.model.partita;
 
 import it.unicam.cs.mpgc.rpg130903.model.eroe.Eroe;
-import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 import it.unicam.cs.mpgc.rpg130903.model.eventofinale.EventoFinale;
+import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 
 import java.util.ArrayList;
 import java.util.List;

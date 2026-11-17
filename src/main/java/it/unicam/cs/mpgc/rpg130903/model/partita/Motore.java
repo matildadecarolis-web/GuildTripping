@@ -98,7 +98,7 @@ public final class Motore {
 
     /**
      * @return {@code true} se l'eroe può svolgere un'attività in questo turno:
-     *         non è in recupero forzato e non ha statistiche a zero
+     * non è in recupero forzato e non ha statistiche a zero
      */
     public boolean isDisponibile(Eroe eroe) {
         return !partita.isInRecupero(eroe) && !haStatisticaAZero(eroe);
@@ -121,11 +121,11 @@ public final class Motore {
     public void eseguiAttivita(Attivita scelta, Eroe eroe) throws AttivitaNonPermessaException {
         controllaInCorso();
         Gilda gilda = partita.getGilda();
-        if (!gilda.getEroi().contains(eroe)) {
-            throw new IllegalArgumentException("L’eroe non appartiene alla gilda");
-        }
         if (eroe == null) {
-            throw new IllegalArgumentException("L’eroe non può essere nullo");
+            throw new IllegalArgumentException("L'eroe non può essere nullo");
+        }
+        if (!gilda.getEroi().contains(eroe)) {
+            throw new IllegalArgumentException("L'eroe non appartiene alla gilda");
         }
         if (scelta == null) {
             throw new IllegalArgumentException("L'attività non può essere nulla");
@@ -146,8 +146,8 @@ public final class Motore {
     }
 
     /**
-     * Applica il recupero forzato a ogni eroe con una statistica a zero e lo segna
-     * in recupero per tutto il turno. Poi l'eventuale imprevisto.
+     * Applica l'imprevisto e poi il recupero forzato a ogni eroe con una statistica a zero e lo segna
+     * in recupero per tutto il turno.
      */
     private void iniziaTurno() {
         Gilda gilda = partita.getGilda();

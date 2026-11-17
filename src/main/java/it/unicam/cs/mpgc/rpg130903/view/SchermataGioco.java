@@ -105,7 +105,7 @@ public final class SchermataGioco extends BorderPane {
         }
         Imprevisto ultimo = controller.getUltimoImprevisto();
         if (ultimo != null) {
-            testo.append("\nImprevisto – ").append(ultimo.getNome()).append(": ").append(ultimo.getDescrizione());
+            testo.append("\nImprevisto - ").append(ultimo.getNome()).append(": ").append(ultimo.getDescrizione());
         }
         if (testo.isEmpty()) {
             return;
@@ -146,9 +146,9 @@ public final class SchermataGioco extends BorderPane {
         crescita.setWrapText(true);
 
         boolean disponibile = controller.isDisponibile(eroe);
-        Label stato = new Label("Stato: " + testoDisponibilita(eroe, disponibile));
-        stato.getStyleClass().add(disponibile ? "stato-disponibile" : "stato-non-disponibile");
-        stato.setWrapText(true);
+        Label statoEroe = new Label("Stato: " + testoDisponibilita(eroe, disponibile));
+        statoEroe.getStyleClass().add(disponibile ? "statoEroe-disponibile" : "statoEroe-non-disponibile");
+        statoEroe.setWrapText(true);
 
         Label prossimo = new Label("Addestramento: +"
                 + eroe.getClasse().getForzaGuadagnata(eroe.getForza()) + " forza");
@@ -157,7 +157,7 @@ public final class SchermataGioco extends BorderPane {
         Label energia = new Label("Energia: " + eroe.getEnergia() + "/" + eroe.getMaxStat());
         Label salute = new Label("Salute: " + eroe.getSalute() + "/" + eroe.getMaxStat());
 
-        VBox scheda = new VBox(6, nome, crescita, stato, prossimo, forza, energia, salute);
+        VBox scheda = new VBox(6, nome, crescita, statoEroe, prossimo, forza, energia, salute);
         List<Attivita> elenco = controller.getAttivita();
         for (int i = 0; i < elenco.size(); i++) {
             Attivita attivita = elenco.get(i);

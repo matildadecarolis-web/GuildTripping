@@ -12,12 +12,7 @@ import it.unicam.cs.mpgc.rpg130903.model.gilda.Gilda;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.GildaAvventurieri;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.GildaBase;
 import it.unicam.cs.mpgc.rpg130903.model.gilda.Specializzazione;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.AttaccoBanditi;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.DonazioneAnonima;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.Epidemia;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.GestoreImprevisti;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.Imprevisto;
-import it.unicam.cs.mpgc.rpg130903.model.imprevisto.MaestroDArmi;
+import it.unicam.cs.mpgc.rpg130903.model.imprevisto.*;
 
 import java.util.List;
 import java.util.Random;

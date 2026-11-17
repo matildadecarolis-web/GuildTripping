@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130903.view;
 
 import it.unicam.cs.mpgc.rpg130903.controller.ControllerGioco;
+import it.unicam.cs.mpgc.rpg130903.model.storico.PartitaSalvata;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-import it.unicam.cs.mpgc.rpg130903.model.storico.PartitaSalvata;
 import java.util.List;
 
 /**
@@ -49,7 +49,8 @@ public final class SchermataIniziale extends VBox {
         setSpacing(15);
         setPadding(new Insets(20));
         setAlignment(Pos.CENTER);
-        getChildren().addAll(titolo, istruzione, campoNome, inizia, messaggio, creaStorico());    }
+        getChildren().addAll(titolo, istruzione, campoNome, inizia, messaggio, creaStorico());
+    }
 
     private void avvia() {
         String nome = campoNome.getText().trim();

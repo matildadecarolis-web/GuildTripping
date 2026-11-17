@@ -2,7 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.model.eventofinale;
 
 /**
  * Dati dell'evento finale che la gilda affronta al termine del turno di innesco.
- * Il turno è nella missione, così nel futuro si può cambiare la scadenza.
+ * Il turno è nell'evento, così nel futuro si può cambiare la scadenza.
  */
 public final class EventoFinale {
 

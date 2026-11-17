@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg130903.app;
 
 import it.unicam.cs.mpgc.rpg130903.controller.ControllerGioco;
 import it.unicam.cs.mpgc.rpg130903.model.partita.CreatorePartita;
+import it.unicam.cs.mpgc.rpg130903.persistence.StoricoJson;
 import it.unicam.cs.mpgc.rpg130903.view.SchermataFinale;
 import it.unicam.cs.mpgc.rpg130903.view.SchermataGioco;
 import it.unicam.cs.mpgc.rpg130903.view.SchermataIniziale;
@@ -11,11 +12,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Random;
-
-import it.unicam.cs.mpgc.rpg130903.persistence.StoricoJson;
-
 import java.nio.file.Path;
+import java.util.Random;
 
 /**
  * Punto di avvio dell'applicazione: crea e collega gli oggetti principali
@@ -33,7 +31,8 @@ public class Applicazione extends Application {
 
     @Override
     public void start(Stage stage) {
-        controller = new ControllerGioco(new CreatorePartita(new Random()), new StoricoJson(Path.of(FILE_STORICO)));        scena = new Scene(new Label(), 960, 700);
+        controller = new ControllerGioco(new CreatorePartita(new Random()), new StoricoJson(Path.of(FILE_STORICO)));
+        scena = new Scene(new Label(), 960, 700);
         caricaStile();
 
         mostraSchermataIniziale();
