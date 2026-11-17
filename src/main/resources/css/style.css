@@ -183,3 +183,19 @@
     -fx-text-fill: #8b5a2b;
     -fx-text-alignment: center;
 }
+
+.intestazione-storico {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5a3e1b;
+}
+
+.riga-vittoria {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #4f7942;
+}
+
+.riga-sconfitta {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #a23b2a;
+}

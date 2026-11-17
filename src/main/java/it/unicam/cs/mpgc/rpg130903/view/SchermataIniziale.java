@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import it.unicam.cs.mpgc.rpg130903.model.storico.PartitaSalvata;
+import java.util.List;
+
 /**
  * Schermata di avvio: il giocatore sceglie il nome della gilda e inizia la partita.
  */
@@ -17,6 +20,7 @@ public final class SchermataIniziale extends VBox {
     private final Runnable allAvvio;
     private final TextField campoNome;
     private final Label messaggio;
+    private static final int PARTITE_MOSTRATE = 5;
 
     public SchermataIniziale(ControllerGioco controller, Runnable allAvvio) {
         if (controller == null || allAvvio == null) {
@@ -45,8 +49,7 @@ public final class SchermataIniziale extends VBox {
         setSpacing(15);
         setPadding(new Insets(20));
         setAlignment(Pos.CENTER);
-        getChildren().addAll(titolo, istruzione, campoNome, inizia, messaggio);
-    }
+        getChildren().addAll(titolo, istruzione, campoNome, inizia, messaggio, creaStorico());    }
 
     private void avvia() {
         String nome = campoNome.getText().trim();
@@ -56,5 +59,32 @@ public final class SchermataIniziale extends VBox {
         }
         controller.nuovaPartita(nome);
         allAvvio.run();
+    }
+
+    /**
+     * Crea il riquadro con le ultime partite giocate, dalla più recente.
+     */
+    private VBox creaStorico() {
+        Label intestazione = new Label("Ultime partite");
+        intestazione.getStyleClass().add("intestazione-storico");
+        VBox riquadro = new VBox(6, intestazione);
+
+        List<PartitaSalvata> partite = controller.getStorico();
+        if (partite.isEmpty()) {
+            riquadro.getChildren().add(new Label("Nessuna partita giocata"));
+        }
+        int prima = Math.max(0, partite.size() - PARTITE_MOSTRATE);
+        for (int i = partite.size() - 1; i >= prima; i--) {
+            PartitaSalvata partita = partite.get(i);
+            Label riga = new Label(partita.getData() + "   " + partita.getNomeGilda() + "   "
+                    + (partita.isVittoria() ? "Vittoria" : "Sconfitta")
+                    + "   " + partita.getPunteggio() + "/" + partita.getDifficolta());
+            riga.getStyleClass().add(partita.isVittoria() ? "riga-vittoria" : "riga-sconfitta");
+            riquadro.getChildren().add(riga);
+        }
+        riquadro.getStyleClass().add("riepilogo");
+        riquadro.setAlignment(Pos.CENTER);
+        riquadro.setMaxWidth(420);
+        return riquadro;
     }
 }
