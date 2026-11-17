@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.Random;
 
+import it.unicam.cs.mpgc.rpg130903.persistence.StoricoJson;
+
+import java.nio.file.Path;
+
 /**
  * Punto di avvio dell'applicazione: crea e collega gli oggetti principali
  * e decide quale schermata mostrare.
@@ -21,6 +25,7 @@ public class Applicazione extends Application {
 
     private ControllerGioco controller;
     private Scene scena;
+    private static final String FILE_STORICO = "storico_partite.json";
 
     public static void main(String[] args) {
         launch(args);
@@ -28,8 +33,7 @@ public class Applicazione extends Application {
 
     @Override
     public void start(Stage stage) {
-        controller = new ControllerGioco(new CreatorePartita(new Random()));
-        scena = new Scene(new Label(), 960, 700);
+        controller = new ControllerGioco(new CreatorePartita(new Random()), new StoricoJson(Path.of(FILE_STORICO)));        scena = new Scene(new Label(), 960, 700);
         caricaStile();
 
         mostraSchermataIniziale();

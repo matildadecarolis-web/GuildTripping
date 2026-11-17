@@ -9,6 +9,11 @@ import it.unicam.cs.mpgc.rpg130903.model.partita.CreatorePartita;
 import it.unicam.cs.mpgc.rpg130903.model.partita.EsitoEvento;
 import it.unicam.cs.mpgc.rpg130903.model.partita.Motore;
 import it.unicam.cs.mpgc.rpg130903.model.partita.StatoPartita;
+import it.unicam.cs.mpgc.rpg130903.model.storico.PartitaSalvata;
+import it.unicam.cs.mpgc.rpg130903.persistence.StoricoRepository;
+
+import java.io.IOException;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -18,13 +23,16 @@ import java.util.List;
 public final class ControllerGioco {
 
     private final CreatorePartita creatore;
+    private final StoricoRepository storico;
     private Motore motore;
+    private String nomeGilda;
 
-    public ControllerGioco(CreatorePartita creatore) {
-        if (creatore == null) {
-            throw new IllegalArgumentException("Il creatore della partita non può essere nullo");
+    public ControllerGioco(CreatorePartita creatore, StoricoRepository storico) {
+        if (creatore == null || storico == null) {
+            throw new IllegalArgumentException("Creatore della partita e storico non possono essere nulli");
         }
         this.creatore = creatore;
+        this.storico = storico;
     }
 
     /**
@@ -33,6 +41,7 @@ public final class ControllerGioco {
      */
     public void nuovaPartita(String nomeGilda) {
         motore = creatore.nuovaPartita(nomeGilda);
+        this.nomeGilda = nomeGilda;
     }
 
     /**
@@ -48,8 +57,35 @@ public final class ControllerGioco {
         }
     }
 
+    /**
+     * Termina il turno; se con questo la partita si conclude, la salva nello storico.
+     */
     public void terminaTurno() {
         motore.terminaTurno();
+        if (isPartitaConclusa()) {
+            salvaNelloStorico();
+        }
+    }
+
+    /**
+     * @return le partite concluse finora, dalla più vecchia alla più recente;
+     * vuota se lo storico non è leggibile
+     */
+    public List<PartitaSalvata> getStorico() {
+        try {
+            return storico.carica();
+        } catch (IOException e) {
+            System.err.println("Impossibile leggere lo storico: " + e.getMessage());
+            return List.of();
+        }
+    }
+
+    private void salvaNelloStorico() {
+        try {
+            storico.salva(new PartitaSalvata(nomeGilda, motore.getEsito(), LocalDate.now()));
+        } catch (IOException e) {
+            System.err.println("Impossibile salvare la partita nello storico: " + e.getMessage());
+        }
     }
 
     public boolean isPartitaConclusa() {
