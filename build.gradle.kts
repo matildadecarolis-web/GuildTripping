@@ -35,3 +35,9 @@ javafx {
 application {
     mainClass = "it.unicam.cs.mpgc.rpg130903.app.Applicazione"
 }
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("com.google.code.gson:gson:2.10.1")
+}
