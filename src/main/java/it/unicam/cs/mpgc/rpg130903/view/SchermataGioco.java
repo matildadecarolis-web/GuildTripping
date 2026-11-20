@@ -147,7 +147,7 @@ public final class SchermataGioco extends BorderPane {
 
         boolean disponibile = controller.isDisponibile(eroe);
         Label statoEroe = new Label("Stato: " + testoDisponibilita(eroe, disponibile));
-        statoEroe.getStyleClass().add(disponibile ? "statoEroe-disponibile" : "statoEroe-non-disponibile");
+        statoEroe.getStyleClass().add(disponibile ? "stato-disponibile" : "stato-non-disponibile");
         statoEroe.setWrapText(true);
 
         Label prossimo = new Label("Addestramento: +"
